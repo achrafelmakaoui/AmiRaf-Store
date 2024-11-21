@@ -1,0 +1,14 @@
+button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+button svg{
+    color: var(--color);
+}
+button:active {
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+  

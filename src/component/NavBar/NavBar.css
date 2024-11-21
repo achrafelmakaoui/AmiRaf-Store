@@ -1,0 +1,167 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins',sans-serif;
+    position: relative;
+}
+html {
+    font-size: 65%;
+    scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--color);
+    border-radius: 20px;
+}
+::-webkit-scrollbar-track {
+    background-color: var(--background-color_g);
+}
+nav{
+    align-items: center;
+    display: flex;
+    font-size: 1.7rem;
+    height: auto;
+    justify-content: space-between;
+    left: 0;
+    padding: 6px 20px 6px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 998;
+    /* background-color: black; */
+}
+nav .navLogo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+}
+nav .navLogo img{
+    width: 50px;
+    height: fit-content;
+    padding: 0;
+}
+nav .navLinks{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 33%;
+}
+nav .navLinks ul{
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+nav .navLinks ul li{
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+nav .navLinks ul li a{
+    text-decoration: none;
+    color: var(--color);
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.1s ease-in;
+}
+nav .navLinks ul li a:hover{
+    font-weight: 600;
+    border-bottom: 2px solid var(--color);
+}
+.darkmode_toggele{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-inline-end: 40px;
+    gap: 15px;
+    width: 33%;
+    z-index: 9999;
+}
+.darkmode_toggele svg{
+    cursor: pointer;
+}
+#openMenuSvg{
+    display: none;
+    color: var(--color);
+}
+.mobileNav{
+    align-items: center;
+    background-color: var(--background-color_w);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    transition: all .3s ease-in-out;
+    width: 100%;
+    z-index: 9999;
+}
+.closed-menu {
+    left: -100% !important;
+}
+.mobileNav span{
+    cursor: pointer;
+    position: absolute;
+    right: 5rem;
+    top: 3rem;
+    color: var(--color);
+}
+.mobileNav ul {
+    display: flex;
+    flex-direction: column;
+    font-size: 2.3rem;
+    gap: 4rem;
+    list-style: none;
+}
+.mobileNav ul a{
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color);
+}
+
+[class*="MuiBadge-"] {
+    font-size: 1rem !important;
+}
+@media screen and (max-width: 1280px){
+    nav .navLogo{
+        width: 30%;
+    }
+    nav .navLinks{
+        width: 65%;
+    }
+}
+@media screen and (max-width: 1024px){
+    nav .navLogo{
+        width: 50%;
+    }
+    nav .navLinks{
+        display: none;
+    }
+    #openMenuSvg{
+        display: block;
+        color: var(--color);
+    }
+    .darkmode_toggele{
+        width: 15%;
+    }
+}
+@media screen and (max-width: 684px){
+    .darkmode_toggele{
+        width: fit-content;
+    }
+}

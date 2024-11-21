@@ -1,0 +1,78 @@
+.contactCards{
+    background-color: var(--background-color_w);
+    height: fit-content;
+    width: 100%;
+}
+.contactContent{
+    margin: 0 auto;
+    padding: 180px 4rem 0px 4rem;
+    max-width: 107rem;
+}
+.contactContent .contactContent-Titles{
+    margin-bottom: 5rem;
+}
+.contactContent .contactContent-Titles h1{
+    font-family: 'Poppins',sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--color);
+}
+.contactContent .contactContent-Titles h2{
+    font-family: 'Poppins',sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-align: center;
+    color: var(--color);
+}
+.contactContent-cards{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex: 1 1 calc(25% - 20px);
+    background-color: transparent;
+    border: 1px solid var(--color);
+    border-radius: 10px;
+    padding: 2rem;
+    gap: 2.5rem;
+    cursor: pointer;
+}
+.contact-card .contact-card-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border: 1px solid var(--social-bg);
+    background-color: var(--social-bg);
+    border-radius: 5px;
+}
+.contact-card .contact-card-icon svg{
+    color: var(--color);
+}
+.contact-card .contact-card-text h3 {
+    font-size: 1.85rem;
+    color: var(--color);
+    margin-bottom: 0.25rem;
+}
+.contact-card .contact-card-text p {
+    font-size: 1.25rem;
+    color: var(--color);
+}
+@media (max-width: 768px) {
+    .contact-card {
+      flex: 1 1 calc(50% - 20px);
+    }
+}
+@media (max-width: 480px) {
+    .contact-card {
+      flex: 1 1 100%;
+    }
+}

@@ -1,0 +1,22 @@
+.WhatsAppIcon{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background: var(--color);
+    padding: 10px;
+    margin: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.WhatsAppIcon a {
+    text-decoration: none;
+}
+.WhatsAppIcon a svg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2em;
+    height: 2em;
+    fill: var(--rev-color);
+    cursor: pointer;
+}
