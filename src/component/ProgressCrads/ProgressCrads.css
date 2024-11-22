@@ -1,37 +1,37 @@
-.contactCards{
+.ProgressCrads{
     background-color: var(--background-color_w);
     height: fit-content;
     width: 100%;
 }
-.contactContent{
+.ProgressCradsContent{
     margin: 0 auto;
     padding: 180px 4rem 0px 4rem;
-    max-width: 107rem;
+    max-width: 138rem;
 }
-.contactContent .contactContent-Titles{
+.ProgressCradsContent .ProgressCradsContent-Titles{
     margin-bottom: 5rem;
 }
-.contactContent .contactContent-Titles h1{
+.ProgressCradsContent .ProgressCradsContent-Titles h1{
     font-family: 'Poppins',sans-serif;
     font-size: 3rem;
     text-align: center;
     margin-bottom: 1rem;
     color: var(--color);
 }
-.contactContent .contactContent-Titles h2{
+.ProgressCradsContent .ProgressCradsContent-Titles h2{
     font-family: 'Poppins',sans-serif;
     font-size: 1.5rem;
     font-weight: 400;
     text-align: center;
     color: var(--color);
 }
-.contactContent-cards{
+.ProgressCradsContent-cards{
     display: flex;
     gap: 20px;
     justify-content: space-between;
     flex-wrap: wrap;
 }
-.contact-card {
+.Progress-card{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -44,42 +44,42 @@
     gap: 2.5rem;
     cursor: pointer;
 }
-.contact-card .contact-card-icon {
+.Progress-card .Progress-card-img img{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 35px;
-    height: 35px;
-    border: 1px solid var(--social-bg);
-    background-color: var(--social-bg);
-    border-radius: 5px;
+    width: 75px;
+    height: fit-content;
+    animation-name: floating;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
-.contact-card .contact-card-icon svg{
+@keyframes floating {
+    from { transform: translate(0,  0px);
+     }
+    65%  { transform: translate(0, 5px);}
+    to   { transform: translate(0, -0px); }
+}
+.Progress-card .Progress-card-imgsvg{
     color: var(--color);
 }
-.contact-card .contact-card-text a{
-    text-decoration: none;
-}
-.contact-card .contact-card-text h3 {
+.Progress-card .Progress-card-text h3 {
     font-size: 1.85rem;
     color: var(--color);
     margin-bottom: 0.25rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 0.75rem;
 }
-.contact-card .contact-card-text p {
+.Progress-card .Progress-card-text p {
     font-size: 1.25rem;
     color: var(--color);
 }
 @media (max-width: 768px) {
-    .contact-card {
+    .Progress-card {
       flex: 1 1 calc(50% - 20px);
     }
 }
 @media (max-width: 480px) {
-    .contact-card {
+    .Progress-card {
       flex: 1 1 100%;
     }
 }

@@ -1,0 +1,251 @@
+.PaymentMethod{
+    display: block;
+    width: 100%;
+    background-color: var(--background-color_w);
+}
+.PaymentMethod-content{
+    margin: 0 auto;
+    padding: 120px 4rem 25px 4rem;
+    max-width: 107rem;
+}
+.PaymentMethod-header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 4rem;
+    margin-bottom: 12rem;
+}
+.PaymentMethod-header h1{
+    color: var(--color);
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    font-family: Poppins,sans-serif;
+}
+.PaymentMethod-body{
+    width: 100%;
+}
+.PaymentMethod-body h3{
+    color: var(--color);
+    font-family: Poppins,sans-serif;
+    font-size: 2rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+}
+.PaymentMethod-body hr{
+    border: none;
+    border-bottom: 1px solid var(--color);
+}
+.PaymentMethod-body p{
+    text-align: justify;
+    color: gray;
+    font-family: Poppins,sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.6;
+}
+.PaymentMethod-end{
+    margin-top: 10rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: var(--social-bg);
+    padding: 3rem;
+    border-radius: 20px;
+}
+.PaymentMethod-end .text-h1 h1{
+    color: var(--color);
+    font-family: Poppins,sans-serif;
+    font-size: 4rem;
+    line-height: 1.4;
+    font-weight: 700;
+}
+.PaymentMethod-end .text-p{
+    font-family: Poppins,sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    font-weight: 400;
+    width: 55%;
+    text-align: center;
+    color: var(--color);
+}
+.PaymentMethod-end .text-btn a{
+    display: flex;
+    align-items: center;
+    color: var(--rev-color);
+    transition: all .2s;
+    font-family: Poppins,sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    padding: 8px 16px;
+    border-radius: 50px;
+    gap: 1rem;
+    text-decoration: none;
+    background-color: var(--color);
+    border: 1px solid var(--color);
+    cursor: pointer;
+}
+@media (max-width: 1071px) {
+    .PaymentMethod-header h3{
+        font-size: 2rem;
+        width:  100%;
+    }
+}
+@media (max-width: 697px) {
+    .PaymentMethod-header h3{
+        font-size: 1.85rem;
+        width:  100%;
+    }
+    .PaymentMethod-header h1{
+        font-size: 8rem;
+    }
+}
+@media (max-width: 661px) {
+    .PaymentMethod-header h3{
+        font-size: 1.65rem;
+        width:  100%;
+    }
+    .PaymentMethod-header h1{
+        font-size: 7.5rem;
+    }
+}
+@media (max-width: 624px) {
+    .PaymentMethod-header h3{
+        font-size: 1.45rem;
+        width:  100%;
+    }
+    .PaymentMethod-header h1{
+        font-size: 7rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .PaymentMethod-header h3{
+        font-size: 1.4rem;
+        width:  100%;
+        display: none;
+    }
+    .PaymentMethod-header{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .PaymentMethod-header h1{
+        font-size: 5.5rem;
+        text-align: left;
+    }
+}
+@media (max-width: 480px) {
+    .PaymentMethod-header h1{
+        font-size: 5rem;
+    }
+}
+@media (max-width: px) {
+    .PaymentMethod-header h1{
+        font-size: 4.5rem;
+    }
+}
+@media (max-width: 444px) {
+    .PaymentMethod-header h1{
+        font-size: 4rem;
+    }
+}
+@media (max-width: 372px) {
+    .PaymentMethod-header h1{
+        font-size: 3.5rem;
+    }
+}
+@media (max-width: 336px) {
+    .PaymentMethod-header h1{
+        font-size: 3rem;
+    }
+    .PaymentMethod-header .h3Mobile{
+        font-size: 1.3rem;
+    }
+}
+@media (max-width: px) {
+    .PaymentMethod-header h1{
+        font-size: 2.5rem;
+    }
+    .PaymentMethod-header .h3Mobile{
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .PaymentMethod-end .text-p{
+        font-size: 1.5rem;
+        width: 55%;
+        text-align: center;
+    }
+}
+@media (max-width: 725px) {
+    .PaymentMethod-end .text-p{
+        font-size: 1.4rem;
+        width: 55%;
+        text-align: center;
+    }
+}
+@media (max-width: 700px) {
+    .PaymentMethod-end{
+        margin-top: 10rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 3rem;
+        border-radius: 20px;
+    }
+    .PaymentMethod-end .text-p{
+        font-size: 1.4rem;
+        width: 100%;
+        text-align: justify;
+    }
+}
+@media (max-width: 497px) {
+    .PaymentMethod-end .text-h1 h1{
+        font-size: 4.5rem;
+    }
+}
+@media (max-width: 461px) {
+    .PaymentMethod-end .text-h1 h1{
+        font-size: 4rem;
+    }
+}
+@media (max-width: 427px) {
+    .PaymentMethod-end .text-h1 h1{
+        font-size: 3.5rem;
+    }
+}
+@media (max-width: 391px) {
+    .PaymentMethod-end .text-h1 h1{
+        font-size: 3rem;
+    }
+    .PaymentMethod-end .text-p{
+        font-size: 1.3rem;
+        width: 100%;
+    }
+}
+@media (max-width: 356px) {
+    .PaymentMethod-end .text-h1 h1{
+        font-size: 2.5rem;
+    }
+    .PaymentMethod-end .text-p{
+        font-size: 1.2rem;
+    }
+}
+@media (max-width: 321px) {
+    .PaymentMethod-end .text-h1 h1{
+        font-size: 2rem;
+    }
+}

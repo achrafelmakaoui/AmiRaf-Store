@@ -10,6 +10,11 @@ import Footer from "./component/Footer/Footer";
 import WhatsAppIcon from "./component/WhatsAppIcon/WhatsAppIcon";
 import ContactCards from "./component/Contact/ContactCards/ContactCards";
 import ContactForm from "./component/Contact/ContactForm/ContactForm";
+import ProgressCrads from "./component/ProgressCrads/ProgressCrads";
+import TermOfUse from "./component/TermOfUse/TermOfUse";
+import PrivacyPolicy from "./component/PrivacyPolicy/PrivacyPolicy";
+import PaymentMethod from "./component/PaymentMethod/PaymentMethod";
+import Products from "./component/Products/Products";
 
 function App() {
 
@@ -42,6 +47,8 @@ function App() {
                   <>
                     <Navbar/>
                     <HeroSection/>
+                    <Products/>
+                    <ProgressCrads/>
                     <WhatsAppIcon/>
                     <Footer/>
                   </>
@@ -60,6 +67,39 @@ function App() {
                     <Navbar/>
                     <ContactCards/>
                     <ContactForm/>
+                    <WhatsAppIcon/>
+                    <Footer/>
+              </>
+            }
+          />
+          <Route
+            path="/terms-and-conditions"
+            element={
+              <>
+                    <Navbar/>
+                    <TermOfUse/>
+                    <WhatsAppIcon/>
+                    <Footer/>
+              </>
+            }
+          />
+          <Route
+            path="/confidentiality"
+            element={
+              <>
+                    <Navbar/>
+                    <PrivacyPolicy/>
+                    <WhatsAppIcon/>
+                    <Footer/>
+              </>
+            }
+          />
+          <Route
+            path="/how-to-pay"
+            element={
+              <>
+                    <Navbar/>
+                    <PaymentMethod/>
                     <WhatsAppIcon/>
                     <Footer/>
               </>

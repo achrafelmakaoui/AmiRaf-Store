@@ -40,9 +40,9 @@ const Navbar = () => {
         <nav>
             <div className="navLinks">
                 <ul>
-                    <li><a href='/#Accueil' aria-label="Go to Home section">Accueil</a></li>
-                    <li><a href='/#Collections'aria-label="View our Services section">Collections</a></li>
-                    <li><a href='/#Contactez nous' aria-label="Access the Calculator section">Contactez nous</a></li>
+                    <li><Link to='/' aria-label="Go to Home section">Accueil</Link></li>
+                    <li><Link to='/Produits'aria-label="View our Produit section">Produits</Link></li>
+                    <li><Link to='/Contact' aria-label="Access the Contact section">Contactez nous</Link></li>
                 </ul>
             </div>
             <div className="navLogo">
@@ -91,11 +91,9 @@ const Navbar = () => {
         <div className={`mobileNav ${activeMenu ? '' : 'closed-menu'}`}>
             <span onClick={handleCloseMenu}><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span>
             <ul>
-            <li><a href='/#Home' onClick={handleCloseMenu} aria-label="Go to Home section">Home</a></li>
-            <li><a href='/#Services' onClick={handleCloseMenu} aria-label="View our Services section">Services</a></li>
-            <li><a href='/#Calculator' onClick={handleCloseMenu} aria-label="Access the Calculator section">Calculator</a></li>
-            <li><a href='/#About' onClick={handleCloseMenu} aria-label="Learn more About us">About</a></li>
-            <li><a href='/#Contact' onClick={handleCloseMenu} aria-label="Get in touch with us">Contact</a></li>
+            <li><Link href='/' onClick={handleCloseMenu} aria-label="Go to Home section">Accueil</Link></li>
+            <li><Link to='/Produits' onClick={handleCloseMenu} aria-label="View our Services section">Produits</Link></li>
+            <li><Link to='/Contact' onClick={handleCloseMenu} aria-label="Get in touch with us">Contactez nous</Link></li>
             </ul>
         </div>
     </>

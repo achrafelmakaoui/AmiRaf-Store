@@ -33,7 +33,7 @@ const ContactForm = () => {
             });
     };
   return (
-    <div className='contactForm'>
+    <div className='contactForm' id='emailAssistance'>
         <div className='contactFormContent'>
             <div className='contactFormContent-Titles'>
                 <h1>Nous Contacter</h1>

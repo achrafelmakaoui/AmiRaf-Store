@@ -6,7 +6,7 @@
 .footer-container{
     margin: 0 auto;
     padding: 120px 4rem 25px 4rem;
-    max-width: 120rem;
+    max-width: 138rem;
 }
 .footer-content{
     display: flex;
@@ -85,7 +85,7 @@
 }
 .footer-content .social-links{
     display: flex;
-    gap:1.5rem;
+    gap:1.25rem;
 }
 .footer-content .social-links a{
     display: flex;
