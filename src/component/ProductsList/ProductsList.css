@@ -1,0 +1,164 @@
+@font-face {
+    font-family: 'DxLactos';
+    src: url('../font/DxLactos-Regular-free-personal-use.otf') format('opentype');
+}
+.ProductsList{
+    background-color: var(--background-color_w);
+    height: fit-content;
+    width: 100%;
+    padding: 80px 0 0 0;
+}
+.ProductsListContent{
+    margin: 0 auto;
+    padding: 100px 4rem 25px 4rem;
+    max-width: 138rem;
+}
+.bannerProductList {
+    position: relative;
+    background-color: #F5F5F5;
+    background-image: url('../Images/bagTexture.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 225px;
+    padding: 40px;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    mix-blend-mode: difference;
+}
+.bannerProductList h1{
+    font-family: 'Poppins',sans-serif;
+    font-size: 4rem;
+    font-weight: 800;
+    color: white;
+}
+
+.bannerProductList span{
+    font-family: 'Poppins',sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
+}
+.ProductsListContent .ProductsListContent-Titles{
+    margin-bottom: 4rem;
+}
+.ProductsListContent .ProductsListContent-Titles h1{
+    font-family: 'Poppins',sans-serif;
+    font-size: 3rem;
+    text-align: left;
+    margin-bottom: 1rem;
+    color: var(--color);
+}
+.ProductsListContent .ProductsListContent-Titles h2{
+    font-family: 'Poppins',sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-align: left;
+    color: var(--color);
+}
+.ProductsListCards{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.ProductsList-card{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 calc(25% - 20px);
+    cursor: pointer;
+    border-radius: 5px;
+}
+.ProductsList-card .ProductsList-img{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    position: relative;
+}
+
+.ProductsList-card .ProductsList-img img{
+    width: 100%;
+    border-radius: 5px;
+}
+.ProductsList-card .ProductsList-img .productAddToCart{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
+    color: #2d2e32;
+    padding: 5px;
+    border-radius: 5px;
+}
+.ProductsList-card .ProductsList-details{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+.ProductsList-card .ProductsList-details .ProductsListAddToCart{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+}
+.ProductsList-card .ProductsList-details .ProductsListTitle{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.ProductsList-card .ProductsList-details .ProductsListTitle h2{
+    font-family: 'Poppins',sans-serif;
+    font-size: 1.65rem;
+    font-weight: 600;
+    color: var(--color);
+}
+.ProductsList-card .ProductsList-details .ProductsListPrincing{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.ProductsList-card .ProductsList-details .ProductsListPrincing span:nth-child(1){
+    font-family: 'Poppins',sans-serif;
+    font-size: 1.35rem;
+    color: var(--color);
+    font-weight: 500;
+    text-decoration: line-through;
+}
+.ProductsList-card .ProductsList-details .ProductsListPrincing span:nth-child(2){
+    font-family: 'Poppins',sans-serif;
+    font-size: 1.45rem;
+    color: var(--color);
+    font-weight: 600;
+}
+.ProductsList-card .ProductsList-details .ProductsList-btn{
+    width: 100%;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+}
+.ProductsList-card .ProductsList-details .ProductsList-btn span{
+    border: 1px solid var(--color);
+    padding: 0.75rem 1.5rem;
+    font-family: 'Poppins',sans-serif;
+    font-size: 1.25rem;
+    color: var(--color);
+    font-weight: 400;
+    border-radius: 5px;
+}

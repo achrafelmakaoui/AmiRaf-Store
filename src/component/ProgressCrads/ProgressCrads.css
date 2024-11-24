@@ -25,6 +25,23 @@
     text-align: center;
     color: var(--color);
 }
+.ProgressCradsContent .ProductProgressCradsContent-Titles{
+    margin-bottom: 5rem;
+}
+.ProgressCradsContent .ProductProgressCradsContent-Titles h1{
+    font-family: 'Poppins',sans-serif;
+    font-size: 3rem;
+    text-align: left;
+    margin-bottom: 1rem;
+    color: var(--color);
+}
+.ProgressCradsContent .ProductProgressCradsContent-Titles h2{
+    font-family: 'Poppins',sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-align: left;
+    color: var(--color);
+}
 .ProgressCradsContent-cards{
     display: flex;
     gap: 20px;

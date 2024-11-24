@@ -15,6 +15,8 @@ import TermOfUse from "./component/TermOfUse/TermOfUse";
 import PrivacyPolicy from "./component/PrivacyPolicy/PrivacyPolicy";
 import PaymentMethod from "./component/PaymentMethod/PaymentMethod";
 import Products from "./component/Products/Products";
+import ProductsList from "./component/ProductsList/ProductsList";
+import ProductDetails from "./component/ProductDetails/ProductDetails";
 
 function App() {
 
@@ -37,7 +39,6 @@ function App() {
       <ThemeProvider>
         <ScrollToSection/>
         <Scrolltotop />
-        {/* <Navbar/> */}
         <Routes>
           <Route
             path="/"
@@ -57,6 +58,29 @@ function App() {
                     {!introComplete && <Intro />}
                   </>
                 )}
+              </>
+            }
+          />
+          <Route
+            path="/Produits"
+            element={
+              <>
+                    <Navbar/>
+                    <ProductsList/>
+                    <ProgressCrads/>
+                    <WhatsAppIcon/>
+                    <Footer/>
+              </>
+            }
+          />
+          <Route
+            path="/DetailsProduits"
+            element={
+              <>
+                    <Navbar/>
+                    <ProductDetails/>
+                    <WhatsAppIcon/>
+                    <Footer/>
               </>
             }
           />

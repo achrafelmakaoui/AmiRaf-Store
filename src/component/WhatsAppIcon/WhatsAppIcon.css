@@ -2,7 +2,7 @@
     position: fixed;
     bottom: 0;
     right: 0;
-    background: var(--color);
+    background: #25d366;
     padding: 10px;
     margin: 25px;
     border-radius: 50%;
@@ -17,6 +17,6 @@
     align-items: center;
     width: 2em;
     height: 2em;
-    fill: var(--rev-color);
+    fill: #F9F9F9;
     cursor: pointer;
 }

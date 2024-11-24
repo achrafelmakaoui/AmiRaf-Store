@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Products.css'; // Keep your CSS for general styles
+import './Products.css';
 import { Link } from 'react-router-dom';
 
 const Products = () => {
@@ -52,7 +52,7 @@ const Products = () => {
     <div className='Products' id='NosProduits'>
       <div className='ProductsContent'>
         <div className='ProductsContent-Titles'>
-          <h1>Nos Produits</h1>
+          <h1>Nouveaux Produits</h1>
           <h2>Découvrez notre sélection unique, alliant qualité, créativité et innovation pour répondre à vos besoins.</h2>
         </div>
         <div className='ProductsCards'>
