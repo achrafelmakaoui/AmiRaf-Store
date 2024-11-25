@@ -1,60 +1,109 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './ProductDetails.css';
+import { Link } from 'react-router-dom';
 
 const ProductDetails = () => {
+  const [quantity, setQuantity] = useState(1);
+
+  const handleQuantity = (type) => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const value = parseInt(e.target.value, 10);
+    if (!isNaN(value) && value > 0) {
+      setQuantity(value);
+    } else {
+      setQuantity(1); 
+    }
+  };
+
+  const [mainImage, setMainImage] = useState(
+    "https://i.ibb.co/nz3pDMQ/air-jordan-1-black-men.png"
+  );
+  const [activeImage, setActiveImage] = useState(mainImage);
+
+  const secondaryImages = [
+    "https://i.ibb.co/nz3pDMQ/air-jordan-1-black-men.png",
+    "https://i.ibb.co/5WqcsXL/7721e342-bd9b-45af-9836-72bf9d729b9e.png",
+    "https://i.ibb.co/5Tdkg7R/test1.png",
+    "https://i.ibb.co/NpkTCmh/252b6f0d-7871-48a3-8d7f-075fa30d7970.png",
+    "https://i.ibb.co/t4FrmD5/34b64f8a-60fe-42d5-8724-ab5c303e62f5.png",
+    "https://i.ibb.co/FW7J3Jt/6cc3b5d4-3a76-4226-86e0-7943716b4a1b.png",
+  ];
+
+  const handleImageClick = (image) => {
+    setMainImage(image);
+    setActiveImage(image);
+  };
+
   return (
     <div className="ProductDetails">
         <div className="ProductDetails-wrapper">
             <div className="ProductDetails-images">
                 <div className="ProductDetails-images-Thumbnail">
                     <div className='ProductDetails-MainImage'>
-                        <img src="https://i.ibb.co/nz3pDMQ/air-jordan-1-black-men.png" alt="" />
+                        <img src={mainImage} alt="Main product" />
                     </div>
                     <div className="ProductDetails-SecondaryImages">
-                        <img src="https://i.ibb.co/4RJ3bGm/air-jordan-1-elevate-low-mens-shoes-black-red-3.png" alt="" className="active"/>
-                        <img src="https://i.ibb.co/4RJ3bGm/air-jordan-1-elevate-low-mens-shoes-black-red-3.png" alt="" />
-                        <img src="https://i.ibb.co/4RJ3bGm/air-jordan-1-elevate-low-mens-shoes-black-red-3.png" alt="" />
-                        <img src="https://i.ibb.co/4RJ3bGm/air-jordan-1-elevate-low-mens-shoes-black-red-3.png" alt="" />
-                        <img src="https://i.ibb.co/4RJ3bGm/air-jordan-1-elevate-low-mens-shoes-black-red-3.png" alt="" />
-                        <img src="https://i.ibb.co/4RJ3bGm/air-jordan-1-elevate-low-mens-shoes-black-red-3.png" alt="" />
+                      {secondaryImages.map((image, index) => (
+                          <img
+                            key={index}
+                            src={image}
+                            alt={`Thumbnail ${index + 1}`}
+                            className={activeImage === image ? "active" : ""}
+                            onClick={() => handleImageClick(image)}
+                          />
+                      ))}
                     </div>
                 </div>
             </div>
             <div className="ProductDetails-content">
-                <p className="Product-stock">STOCK</p>
-                <h2 className='Product-title'>PRODUCT TITLE</h2>
-                <p className="Product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi sunt quia a deleniti fugiat nesciunt neque debitis ullam ad repudiandae facere quas nihil, alias, natus tempora animi id consequatur, cupiditate expedita sint eveniet aspernatur accusamus?</p>
+                <span className="Product-stock">In stock</span>
+                <h2 className='Product-title'>Air jordan 1 elevate low</h2>
+                <p className="Product-description">Rise to the occasion in style that soars. This shoe reworks an icon's original magic with a platform sole and low-cut silhouette. Air cushioning keeps you lifted, and sleek leather in contrasting colours adds visual interest.</p>
                 <div className="Product-price">
-                    <div className="Product-price">
-                        <p className="Product-discounted-price">$125.00</p>
-                        <p><span class="discount-discount">50%</span></p>
+                    <div className="Product-price-dis">
+                        <span className="Product-discounted-price">125.00 DH</span>
+                        <span class="discount-discount">50%</span>
                     </div>
-                    <p className="Product-Actual-price">$250.00</p>
+                    <p className="Product-Actual-price">250.00 DH</p>
                 </div>
+                <div className='stockSec'>
+                    <span>Hurry! Only  <mark> 1 </mark>  Left in Stock!</span>
+                    <div className='productInStock'>
+                        <div className='productStillInStock'></div>
+                    </div>
+                </div>
+                <hr/>
                 <div className="Product-Quantity">
-                    <div className="Product-Quantity-Gestion">
-                        <button type="button" className="decreament">-</button>
-                        <button type="input" className="quantity-numbers">1</button>
-                        <button type="button" className="increament">+</button>
-                    </div>
-                    <button className="Product-add-cart" type="button">
-                        <span>
-                            <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="#ffffff" fill-rule="nonzero"/>
-                            </svg>
-                        </span>
-                        <p>Add to Cart</p>
+                    <input className="quantityValue" type='number' value={quantity} onChange={handleInputChange} min="1"/>
+                    <button type="button" className="quantityBtn" onClick={() => handleQuantity("dec")} >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <button type="button" className="quantityBtn" onClick={() => handleQuantity("inc")} >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </button>
                 </div>
-                <div className="Product-OrderNow">
-                    <button className="Product-OrderNow-btn" type="button">
-                        <span>
-                            <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="#ffffff" fill-rule="nonzero"/>
-                            </svg>
-                        </span>
-                        <p>Order Now</p>
+                <div className="Product-Btns">
+                    <button className="Product-add-cart" type="button">
+                        Add to Cart
                     </button>
+                    <button className="Product-OrderNow-btn" type="button">
+                        Order Now
+                    </button>
+                </div>
+                <div className='Livraison'>
+                    <span>Livraison a Domicile dans les 48H Partout au Maroc !</span>
+                    <div className='LienConditions'>
+                        <Link to='/terms-and-conditions'><span>Conditions D'utilisation</span></Link>
+                        <Link to='/confidentiality'><span>Politique de Confidentialité</span></Link>
+                        <Link to='/how-to-pay'><span>Méthodes de payement</span></Link>
+                    </div>
                 </div>
             </div>
         </div>

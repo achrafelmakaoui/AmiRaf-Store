@@ -17,6 +17,7 @@ import PaymentMethod from "./component/PaymentMethod/PaymentMethod";
 import Products from "./component/Products/Products";
 import ProductsList from "./component/ProductsList/ProductsList";
 import ProductDetails from "./component/ProductDetails/ProductDetails";
+import Cart from "./component/Cart/Cart";
 
 function App() {
 
@@ -79,6 +80,17 @@ function App() {
               <>
                     <Navbar/>
                     <ProductDetails/>
+                    <WhatsAppIcon/>
+                    <Footer/>
+              </>
+            }
+          />
+          <Route
+            path="/Cart"
+            element={
+              <>
+                    <Navbar/>
+                    <Cart/>
                     <WhatsAppIcon/>
                     <Footer/>
               </>
