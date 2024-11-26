@@ -32,7 +32,7 @@ const PaymentMethod = () => {
             <div className='PaymentMethod-end'>
                 <div className='text-h1'><h1>Get in Touch!</h1></div>
                 <div className='text-p'><p>Contact AmiraF for personalized assistance and expert advice on all your shopping needs.</p></div>
-                <div className='text-btn'><Link to='/'>Contact Us</Link></div>
+                <div className='text-btn'><Link to='/contact'>Contact Us</Link></div>
             </div>
         </div>
     </div>

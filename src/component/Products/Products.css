@@ -39,7 +39,6 @@
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    box-sizing: border-box;
     border-radius: 5px;
 }
 .product-card .product-img{
@@ -135,4 +134,21 @@
     color: var(--rev-color);
     font-weight: 500;
     border-radius: 50px;
+}
+@media (max-width: 1200px) {
+    .product-card{
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+@media (max-width: 768px) {
+    .ProductsContent{
+        margin: 0 auto;
+        padding: 120px 2rem 25px 2rem;
+        max-width: 138rem;
+    }
+}
+@media (max-width: 650px) {
+    .product-card{
+        flex: 1 1 calc(100% - 20px);
+    }
 }

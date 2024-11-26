@@ -138,6 +138,13 @@
         margin-bottom: 30px;
     }
 }
+@media (max-width: 768px) {
+    .footer-container{
+        margin: 0 auto;
+        padding: 120px 1rem 25px 1rem;
+        max-width: 138rem;
+    }
+}
 @media(max-width: 574px){
     .footer-col1{
       width: 100%;

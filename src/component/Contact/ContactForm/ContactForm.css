@@ -127,7 +127,15 @@ form .form-Btn button{
     font-weight: 600;
     color: var(--rev-color);
 }
+@media (max-width: 1083px) {
+    .contactContent-Form form{
+        width: 75%;
+    }
+}
 @media (max-width: 768px) {
+    .contactContent-Form form{
+        width: 100%;
+    }
     .form-FullName {
         flex-direction: column;
         gap: 10px;
@@ -139,4 +147,10 @@ form .form-Btn button{
     form .form-Message textarea{
         min-height: 120px;
     }
+    .contactFormContent{
+        margin: 0 auto;
+        padding: 140px 2rem 25px 2rem;
+        max-width: 107rem;
+    }
 }
+

@@ -29,7 +29,7 @@ const ProgressCrads = () => {
               <img src={Bag} alt="Bag" />
             </div>
             <div className="Progress-card-text">
-              <h3>Paiement a la Livraison</h3>
+              <h3>Payez à livraison</h3>
               <p>Disponible partout au Maroc.</p>
             </div>
           </div>
@@ -47,7 +47,7 @@ const ProgressCrads = () => {
               <img src={Gift} alt="Gift" />
             </div>
             <div className="Progress-card-text">
-              <h3>Véritable Garantie</h3>
+              <h3>Garantie réelle</h3>
               <p>Nos articles sont tous certifiés</p>
             </div>
           </div>
@@ -56,7 +56,7 @@ const ProgressCrads = () => {
               <img src={PhoneCall} alt="Phone Call" />
             </div>
             <div className="Progress-card-text">
-              <h3>Service après vente</h3>
+              <h3>Service client</h3>
               <p>Plus de soucis sur la sécurité.</p>
             </div>
           </div>

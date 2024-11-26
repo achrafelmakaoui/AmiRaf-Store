@@ -5,10 +5,7 @@ import { gsap, Power2 } from 'gsap';
 
 const HeroSection = () => {
     const TextAnimation = useRef();
-    const ImgAnimation = useRef();
-    const Img2Animation = useRef();
     const paraghAnimation = useRef();
-    const iconsAnimation = useRef();
     const iconsAnimation2 = useRef();
     useEffect(() => {
         const tl = gsap.timeline();
@@ -22,18 +19,10 @@ const HeroSection = () => {
             '-=1'
         );
     
-        // Wave Animation with a delay after text animation
         tl.fromTo(
             paraghAnimation.current,
             0.5,
             { yPercent: 20, opacity: 0, stagger: 0.02, ease: Power2.easeInOut },
-            { yPercent: 0, opacity: 1, stagger: 0.02, ease: Power2.easeInOut },
-            '-=0.5'
-        );
-        tl.fromTo(
-            iconsAnimation.current,
-            0.5,
-            { yPercent: 130, opacity: 0, stagger: 0.02, ease: Power2.easeInOut },
             { yPercent: 0, opacity: 1, stagger: 0.02, ease: Power2.easeInOut },
             '-=0.5'
         );
@@ -44,8 +33,6 @@ const HeroSection = () => {
             { yPercent: 0, opacity: 1, stagger: 0.02, ease: Power2.easeInOut },
             '-=0.5'
         );
-        tl.fromTo(ImgAnimation.current, 1, { opacity: 0 }, { opacity: 1, ease: Power2.easeInOut }, '-=1.6');
-        tl.fromTo(Img2Animation.current, 1, { opacity: 0, y:60 }, { opacity: 1, y:0, ease: Power2.easeInOut }, '-=1.6');
     }, []);
 
   return (

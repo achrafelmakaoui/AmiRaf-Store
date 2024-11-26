@@ -1,0 +1,84 @@
+.OrderConfirmation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.508);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    backdrop-filter: blur(5px);
+    transform: translate(-50%, -50%);
+    z-index: 998;
+    width: 100%;
+    height: 100vh;
+  }
+.OrderConfirmationAlert{
+    width: 450px;
+    height: fit-content;
+    background: var(--background-color_w);
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 4rem;
+    z-index: 999;
+}
+.OrderConfirmationBanner{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+}
+.OrderConfirmation-Icon{
+    width: 100%;
+}
+.OrderConfirmation-Icon img{
+    width: 100%;
+}
+.OrderConfirmation-Title{
+    width: 100%;
+}
+.OrderConfirmation-Title h2{
+    font-family: 'Poppins',sans-serif;
+    color: var(--color);
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+.OrderConfirmation-Text{
+    width: 100%;
+}
+.OrderConfirmation-Text p{
+    font-family: 'Poppins',sans-serif;
+    color: var(--color);
+    font-size: 1.25rem;
+    font-weight: 300;
+    text-align: justify;
+}
+.OrderConfirmation-Btn{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.OrderConfirmation-Btn span{
+    width: 100%;
+    background-color: var(--color);
+    font-family: 'Poppins',sans-serif;
+    color: var(--rev-color);
+    font-size: 1.15rem;
+    font-weight: 500;
+    border-radius: 2px;
+    padding: 1rem 2rem;
+}
+.OrderConfirmation-Btn span:hover{
+    width: 100%;
+    background-color: transparent;
+    font-family: 'Poppins',sans-serif;
+    color: var(--color);
+    font-size: 1.15rem;
+    font-weight: 500;
+    border-radius: 2px;
+    padding: 1rem 2rem;
+    border: 1px solid var(--color);
+    cursor: pointer;
+}

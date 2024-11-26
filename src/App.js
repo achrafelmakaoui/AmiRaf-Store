@@ -18,6 +18,7 @@ import Products from "./component/Products/Products";
 import ProductsList from "./component/ProductsList/ProductsList";
 import ProductDetails from "./component/ProductDetails/ProductDetails";
 import Cart from "./component/Cart/Cart";
+import MakeOrder from "./component/MakeOrder/MakeOrder";
 
 function App() {
 
@@ -91,6 +92,17 @@ function App() {
               <>
                     <Navbar/>
                     <Cart/>
+                    <WhatsAppIcon/>
+                    <Footer/>
+              </>
+            }
+          />
+          <Route
+            path="/checkout/confirmation"
+            element={
+              <>
+                    <Navbar/>
+                    <MakeOrder/>
                     <WhatsAppIcon/>
                     <Footer/>
               </>

@@ -137,6 +137,11 @@
     .privacyPolicy-header h1{
         font-size: 7.5rem;
     }
+    .privacyPolicy-content{
+        margin: 0 auto;
+        padding: 120px 2rem 25px 2rem;
+        max-width: 107rem;
+    }
 }
 @media (max-width: 731px) {
     .privacyPolicy-header h3{

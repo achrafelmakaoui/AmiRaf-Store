@@ -21,54 +21,43 @@ html {
 ::-webkit-scrollbar-track {
     background-color: var(--background-color_g);
 }
-nav{
+nav {
     align-items: center;
     display: flex;
-    font-size: 1.7rem;
     height: auto;
     justify-content: space-between;
-    left: 0;
-    padding: 6px 20px 6px 20px;
+    padding: 20px 40px;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 998;
     background-color: var(--background-color_w);
 }
-nav .navLogo{
+nav .navLinks,
+nav .navLogo,
+nav .darkmode_toggele {
+    flex: 1;
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 33%;
 }
-nav .navLogo img{
-    width: 50px;
-    height: fit-content;
-    padding: 0;
-}
-nav .navLinks{
-    display: flex;
+nav .navLinks {
     justify-content: flex-start;
-    align-items: center;
-    width: 33%;
 }
-nav .navLinks ul{
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
+nav .navLogo {
+    justify-content: center;
+}
+nav .darkmode_toggele {
+    justify-content: flex-end;
+    gap: 15px;
+}
+nav .navLinks ul {
     display: flex;
     gap: 2rem;
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
-nav .navLinks ul li{
-    display: list-item;
-    text-align: -webkit-match-parent;
-}
-nav .navLinks ul li a{
+nav .navLinks ul li a {
     text-decoration: none;
     color: var(--color);
     font-family: 'Poppins', sans-serif;
@@ -77,20 +66,14 @@ nav .navLinks ul li a{
     font-size: 16px;
     transition: 0.1s ease-in;
 }
-nav .navLinks ul li a:hover{
+nav .navLinks ul li a:hover {
     font-weight: 600;
     border-bottom: 2px solid var(--color);
 }
-.darkmode_toggele{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-inline-end: 40px;
-    gap: 15px;
-    width: 33%;
-    z-index: 9999;
+nav .navLogo img {
+    width: 50px;
 }
-.darkmode_toggele svg{
+.darkmode_toggele svg {
     cursor: pointer;
 }
 #openMenuSvg{
@@ -133,31 +116,23 @@ nav .navLinks ul li a:hover{
     text-decoration: none;
     color: var(--color);
 }
-
 [class*="MuiBadge-"] {
     font-size: 1rem !important;
 }
-@media screen and (max-width: 1280px){
-    nav .navLogo{
-        width: 30%;
-    }
-    nav .navLinks{
-        width: 65%;
-    }
-}
-@media screen and (max-width: 1024px){
-    nav .navLogo{
-        width: 50%;
+
+@media screen and (max-width: 1000px){
+    nav {
+        padding: 20px 20px;
     }
     nav .navLinks{
         display: none;
     }
+    nav .navLogo {
+        justify-content: flex-start;
+    }
     #openMenuSvg{
         display: block;
         color: var(--color);
-    }
-    .darkmode_toggele{
-        width: 15%;
     }
 }
 @media screen and (max-width: 684px){

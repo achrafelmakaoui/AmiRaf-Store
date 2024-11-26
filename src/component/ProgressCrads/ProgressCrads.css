@@ -47,6 +47,7 @@
     gap: 20px;
     justify-content: space-between;
     flex-wrap: wrap;
+    align-items: center;
 }
 .Progress-card{
     display: flex;
@@ -66,7 +67,6 @@
     justify-content: center;
     align-items: center;
     width: 75px;
-    height: fit-content;
     animation-name: floating;
     animation-duration: 2s;
     animation-iteration-count: infinite;
@@ -90,13 +90,18 @@
     font-size: 1.25rem;
     color: var(--color);
 }
-@media (max-width: 768px) {
+@media (max-width: 1150px) {
     .Progress-card {
       flex: 1 1 calc(50% - 20px);
     }
 }
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+    .ProgressCradsContent{
+        padding: 180px 2rem 0px 2rem;
+    }
+}
+@media (max-width: 700px) {
     .Progress-card {
-      flex: 1 1 100%;
+        flex: 1 1 calc(100% - 20px);
     }
 }

@@ -97,6 +97,13 @@
         width:  100%;
     }
 }
+@media (max-width: 768px) {
+    .termofuse-content{
+        margin: 0 auto;
+        padding: 120px 2rem 25px 2rem;
+        max-width: 107rem;
+    }
+}
 @media (max-width: 697px) {
     .termofuse-header h3{
         font-size: 1.85rem;

@@ -102,3 +102,68 @@
     cursor: pointer;
     text-decoration: none;
 }
+
+@media (max-width: 900px) {
+    .heroTitle h1{
+        font-size: 5rem;
+    }
+    .heroTitle .heroTitleDesignLine2 h1{
+        font-size: 5rem;
+    }
+    .heroTitle .heroTitleDesignLine2 span{
+        padding: 0rem 2rem;
+    }
+    .heroTitle .heroTitleDesignLine2 span img{
+        width: 40px;
+    }
+}
+@media (max-width: 760px) {
+    .heroTitle h1{
+        font-size: 4rem;
+    }
+    .heroTitle .heroTitleDesignLine2 h1{
+        font-size: 4rem;
+    }
+    .heroTitle .heroTitleDesignLine2 span{
+        padding: 0rem 2rem;
+    }
+    .heroTitle .heroTitleDesignLine2 span img{
+        width: 40px;
+    }
+}
+@media (max-width: 620px) {
+    .heroTitle h1{
+        font-size: 3rem;
+    }
+    .heroTitle .heroTitleDesignLine2 h1{
+        font-size: 3rem;
+    }
+    .heroTitle .heroTitleDesignLine2 span{
+        padding: 0rem 1.5rem;
+    }
+    .heroTitle .heroTitleDesignLine2 span img{
+        width: 30px;
+    }
+}
+@media (max-width: 450px) {
+    .heroTitle h1{
+        font-size: 2.5rem;
+    }
+    .heroTitle .heroTitleDesignLine2 h1{
+        font-size: 2.5rem;
+    }
+    .heroTitle .heroTitleDesignLine2 span{
+        padding: 0rem 1.25rem;
+    }
+    .heroTitle .heroTitleDesignLine2 span img{
+        width: 25px;
+    }
+    .heroCompanyName{
+        gap: 2.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+    }
+    .heroCompanyName span {
+        font-size: 1.25rem;
+    }
+}

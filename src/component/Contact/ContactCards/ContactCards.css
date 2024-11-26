@@ -75,11 +75,21 @@
 }
 @media (max-width: 768px) {
     .contact-card {
-      flex: 1 1 calc(50% - 20px);
+      flex: 1 1 calc(100% - 20px);
+    }
+    .contactContent{
+        margin: 0 auto;
+        padding: 180px 2rem 0px 2rem;
+        max-width: 107rem;
     }
 }
-@media (max-width: 480px) {
-    .contact-card {
-      flex: 1 1 100%;
+@media (max-width: 350px) {
+    .contact-card .contact-card-text h3 {
+        font-size: 1.65rem;
+    }
+}
+@media (max-width: 316px) {
+    .contact-card .contact-card-text h3 {
+        font-size: 1.45rem;
     }
 }
