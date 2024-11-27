@@ -5,7 +5,6 @@ import { ThemeProvider } from './ThemeContext';
 import { Routes, Route } from 'react-router-dom';
 import Scrolltotop from "./Scrolltotop";
 import ScrollToSection from "./ScrollToSection";
-import HeroSection from "./component/HeroSection/HeroSection";
 import Footer from "./component/Footer/Footer";
 import WhatsAppIcon from "./component/WhatsAppIcon/WhatsAppIcon";
 import ContactCards from "./component/Contact/ContactCards/ContactCards";
@@ -19,6 +18,7 @@ import ProductsList from "./component/ProductsList/ProductsList";
 import ProductDetails from "./component/ProductDetails/ProductDetails";
 import Cart from "./component/Cart/Cart";
 import MakeOrder from "./component/MakeOrder/MakeOrder";
+import LandPage from "./component/LandingPage/LandPage";
 
 function App() {
 
@@ -49,7 +49,7 @@ function App() {
                 {introComplete ? (
                   <>
                     <Navbar/>
-                    <HeroSection/>
+                    <LandPage/>
                     <Products/>
                     <ProgressCrads/>
                     <WhatsAppIcon/>

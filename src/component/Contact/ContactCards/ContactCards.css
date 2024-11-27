@@ -82,6 +82,12 @@
         padding: 180px 2rem 0px 2rem;
         max-width: 107rem;
     }
+    .contactContent .contactContent-Titles h1{
+        text-align: left;
+    }
+    .contactContent .contactContent-Titles h2{
+        text-align: left;
+    }
 }
 @media (max-width: 350px) {
     .contact-card .contact-card-text h3 {

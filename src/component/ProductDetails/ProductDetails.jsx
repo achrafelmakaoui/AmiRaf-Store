@@ -69,7 +69,7 @@ const ProductDetails = () => {
                 <div className="Product-price">
                     <div className="Product-price-dis">
                         <span className="Product-discounted-price">125.00 DH</span>
-                        <span class="discount-discount">50%</span>
+                        <span className="discount-discount">50%</span>
                     </div>
                     <p className="Product-Actual-price">250.00 DH</p>
                 </div>
@@ -83,10 +83,10 @@ const ProductDetails = () => {
                 <div className="Product-Quantity">
                     <input className="quantityValue" type='number' value={quantity} onChange={handleInputChange} min="1"/>
                     <button type="button" className="quantityBtn" onClick={() => handleQuantity("dec")} >
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </button>
                     <button type="button" className="quantityBtn" onClick={() => handleQuantity("inc")} >
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </button>
                 </div>
                 <div className="Product-Btns">

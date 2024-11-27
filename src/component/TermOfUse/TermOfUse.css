@@ -91,63 +91,11 @@
     border: 1px solid var(--color);
     cursor: pointer;
 }
-@media (max-width: 1071px) {
-    .termofuse-header h3{
-        font-size: 2rem;
-        width:  100%;
-    }
-}
 @media (max-width: 768px) {
     .termofuse-content{
         margin: 0 auto;
         padding: 120px 2rem 25px 2rem;
         max-width: 107rem;
-    }
-}
-@media (max-width: 697px) {
-    .termofuse-header h3{
-        font-size: 1.85rem;
-        width:  100%;
-    }
-    .termofuse-header h1{
-        font-size: 8rem;
-    }
-}
-@media (max-width: 661px) {
-    .termofuse-header h3{
-        font-size: 1.65rem;
-        width:  100%;
-    }
-    .termofuse-header h1{
-        font-size: 7.5rem;
-    }
-}
-@media (max-width: 624px) {
-    .termofuse-header h3{
-        font-size: 1.45rem;
-        width:  100%;
-    }
-    .termofuse-header h1{
-        font-size: 7rem;
-    }
-}
-
-@media (max-width: 600px) {
-    .termofuse-header h3{
-        font-size: 1.4rem;
-        width:  100%;
-        display: none;
-    }
-    .termofuse-header .h3Mobile{
-        text-align: justify;
-        color: gray;
-        font-family: Poppins,sans-serif;
-        font-size: 1.4rem;
-        line-height: 1.4;
-        margin-bottom: 1rem;
-        width: 100%;
-        font-weight: 400;
-        display: block;
     }
     .termofuse-header{
         width: 100%;
@@ -156,48 +104,7 @@
         align-items: flex-start;
         flex-direction: column;
     }
-    .termofuse-header h1{
-        font-size: 5.5rem;
-        text-align: left;
-    }
 }
-@media (max-width: 480px) {
-    .termofuse-header h1{
-        font-size: 5rem;
-    }
-}
-@media (max-width: px) {
-    .termofuse-header h1{
-        font-size: 4.5rem;
-    }
-}
-@media (max-width: 444px) {
-    .termofuse-header h1{
-        font-size: 4rem;
-    }
-}
-@media (max-width: 372px) {
-    .termofuse-header h1{
-        font-size: 3.5rem;
-    }
-}
-@media (max-width: 336px) {
-    .termofuse-header h1{
-        font-size: 3rem;
-    }
-    .termofuse-header .h3Mobile{
-        font-size: 1.3rem;
-    }
-}
-@media (max-width: px) {
-    .termofuse-header h1{
-        font-size: 2.5rem;
-    }
-    .termofuse-header .h3Mobile{
-        font-size: 1.2rem;
-    }
-}
-
 @media (max-width: 800px) {
     .termofuse-end .text-p{
         font-size: 1.5rem;

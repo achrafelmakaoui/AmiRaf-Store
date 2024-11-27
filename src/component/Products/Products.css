@@ -146,6 +146,12 @@
         padding: 120px 2rem 25px 2rem;
         max-width: 138rem;
     }
+    .ProductsContent .ProductsContent-Titles h1{
+        text-align: left;
+    }
+    .ProductsContent .ProductsContent-Titles h2{
+        text-align: left;
+    }
 }
 @media (max-width: 650px) {
     .product-card{

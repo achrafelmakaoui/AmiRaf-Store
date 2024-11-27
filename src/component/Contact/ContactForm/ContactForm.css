@@ -152,5 +152,11 @@ form .form-Btn button{
         padding: 140px 2rem 25px 2rem;
         max-width: 107rem;
     }
+    .contactFormContent .contactFormContent-Titles h1{
+        text-align: left;
+    }
+    .contactFormContent .contactFormContent-Titles h2{
+        text-align: left;
+    }
 }
 

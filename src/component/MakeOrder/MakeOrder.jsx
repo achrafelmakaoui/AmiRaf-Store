@@ -79,22 +79,22 @@ const MakeOrder = () => {
                     <h2>Informations Client</h2>
                     <div className='orderInputs'>
                         <div className='orderInput-row'>
-                            <label>Nom Complet</label>
-                            <input type='text' placeholder='Nom Complet'/>  
+                            <label htmlFor='name'>Nom Complet</label>
+                            <input type='text' id="name" name="name" placeholder='Nom Complet'/>  
                         </div>
                         <div className='orderInput-row'>
-                            <label>Numero de Telephone</label>                      
-                            <input type='number' placeholder='Numero de Telephone'/>
+                            <label htmlFor='telephone'>Numero de Telephone</label>                      
+                            <input type='number' id="telephone" name="telephone" placeholder='Numero de Telephone'/>
                         </div>
                     </div>
                     <div className='orderInputs'>
                         <div className='orderInput-row'>
-                            <label>Ville</label>
-                            <input type='text' placeholder='Ville'/>  
+                            <label htmlFor='ville'>Ville</label>
+                            <input type='text' id="ville" name="ville" placeholder='Ville'/>  
                         </div>                        
                         <div className='orderInput-row'>
-                             <label>Adresse Complete</label>                      
-                            <input type='text' placeholder='Adresse Complete'/>
+                             <label htmlFor='adresse'>Adresse Complete</label>                      
+                            <input type='text' id="adresse" name="adresse" placeholder='Adresse Complete'/>
                         </div>
                     </div>
                     <div className='order-btn'>

@@ -13,7 +13,7 @@ const Intro = () => {
           </svg>
         </div>
         <div className='intro-content'>
-          <h1><span>AmiRaf</span></h1>
+          <h1><span>Bienvenue chez AmiRaf</span></h1>
         </div>
       </div>
     </section>

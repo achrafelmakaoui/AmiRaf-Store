@@ -99,6 +99,12 @@
     .ProgressCradsContent{
         padding: 180px 2rem 0px 2rem;
     }
+    .ProgressCradsContent .ProgressCradsContent-Titles h1{
+        text-align: left;
+    }
+    .ProgressCradsContent .ProgressCradsContent-Titles h2{
+        text-align: left;
+    }
 }
 @media (max-width: 700px) {
     .Progress-card {
