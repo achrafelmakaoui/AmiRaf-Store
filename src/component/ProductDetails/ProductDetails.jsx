@@ -47,7 +47,7 @@ const ProductDetails = () => {
             <div className="ProductDetails-images">
                 <div className="ProductDetails-images-Thumbnail">
                     <div className='ProductDetails-MainImage'>
-                        <img src={mainImage} alt="Main product" />
+                        <img src={mainImage} alt="Main product"/>
                     </div>
                     <div className="ProductDetails-SecondaryImages">
                       {secondaryImages.map((image, index) => (

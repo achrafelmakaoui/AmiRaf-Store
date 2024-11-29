@@ -60,6 +60,9 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
+.OrderConfirmation-Btn a{
+    text-decoration: none;
+}
 .OrderConfirmation-Btn span{
     width: 100%;
     background-color: var(--color);
@@ -81,4 +84,21 @@
     padding: 1rem 2rem;
     border: 1px solid var(--color);
     cursor: pointer;
+}
+
+
+@media (max-width: 500px) {
+    .OrderConfirmationAlert{
+        width: 400px;
+    }
+}
+@media (max-width: 450px) {
+    .OrderConfirmationAlert{
+        width: 350px;
+    }
+}
+@media (max-width: 400px) {
+    .OrderConfirmationAlert{
+        width: 300px;
+    }
 }

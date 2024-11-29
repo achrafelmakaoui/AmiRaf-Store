@@ -1,6 +1,7 @@
 import React from 'react'
 import './OrderConfirmation.css'
 import { motion } from "framer-motion"
+import { Link } from 'react-router-dom'
 
 const OrderConfirmation = () => {
 
@@ -18,7 +19,7 @@ const OrderConfirmation = () => {
                     <p>Nous sommes honorés de vous compter parmi nos clients. Merci pour votre confiance et votre soutien. Votre commande est en route et arrivera bientôt. Nous espérons que votre expérience sera à la hauteur de vos attentes ! 😊</p>
                 </div>
                 <div className='OrderConfirmation-Btn'>
-                    <span>Continuer vos Achats</span>
+                    <Link to='/Produits'><span>Continuer vos Achats</span></Link>
                 </div>
             </div>
         </motion.div>

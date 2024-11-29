@@ -194,3 +194,53 @@
     font-size: 1.5rem;
     font-weight: 600;
 }
+
+@media (max-width: 1000px) {
+    .MakeOrderContent{
+        padding: 120px 2rem 25px 2rem;
+    }
+    .OrderWrapper{
+        flex-direction: column;
+        gap: 5rem;
+    }
+    .orderForm{
+        width: 100%;
+    }
+    .ordredProducts-Details{
+        width: 100%;
+    }
+}
+@media (max-width: 500px) {
+    .orderForm .order-btn{
+        width: 100%;
+        margin-top: 1rem;
+    }
+    .orderForm .orderInputs{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .ordredProducts-Details .ordredProduct-banner .ordredproduct-img{
+        width: 20%;
+    }
+}
+@media (max-width: 410px) {
+    .ordredProducts-Details .ordredProduct-banner .ordredproduct-img{
+        width: 25%;
+    }
+    .ordredProducts-Details .ordredProduct-banner .ordredproduct-summary h3{
+        font-size: 1.25rem;
+    }
+    .ordredProducts-Details .ordredProduct-banner .ordredproduct-summary .productSummary-Price span:nth-child(1){
+        font-size: 1.1rem;
+    }
+    .ordredProducts-Details .ordredProduct-banner .ordredproduct-summary .productSummary-Price span:nth-child(2){
+        font-size: 1.1rem;
+    }
+    .ordredProducts-Details .ordredProduct-banner .ordredproduct-summary .productSummary-qty span:nth-child(1){
+        font-size: 1rem;
+    }
+    .ordredProducts-Details .ordredProduct-banner .ordredproduct-summary .productSummary-qty span:nth-child(2){
+        font-size: 1rem;
+    }
+}

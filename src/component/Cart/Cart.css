@@ -121,7 +121,7 @@
     align-items: flex-end;
 }
 .cartProduct-Details-qty-del .cartProduct-qte{
-    width: 50%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -130,6 +130,7 @@
     font-family: 'Poppins',sans-serif;
     font-size: 1.25rem;
     font-weight: 500;
+    color: var(--color);
 }
 .cartProduct-Details-qty-del .cartProduct-qte .qte-value{
    display: flex;
@@ -169,7 +170,7 @@
     color: var(--color);
 }
 .cartProduct-Details-qty-del .cartProduct-delete{
-    width: 50%;
+    width: 30%;
     display: flex;
     justify-content: flex-end;
 }
@@ -244,4 +245,235 @@
     font-size: 1.25rem;
     font-weight: 500;
     cursor: pointer;
+}
+
+@media (max-width: 1400px) {
+    .cartProduct-Img{
+        width: 30%;
+    }
+}
+@media (max-width: 1250px) {
+    .cartProduct-Img{
+        width: 35%;
+    }
+}
+@media (max-width: 1125px) {
+    .cartProduct-Img{
+        width: 38.5%;
+    }
+    .cartProduct-Details-qty-del{
+        width: 100%;
+    }
+    .cartProduct-Details-itemLeft{
+        width: 100%;
+    }
+}
+@media (max-width: 1000px) {
+    .cart-wrapper{
+        flex-direction: column;
+        gap: 5rem;
+    }
+    .productCart-wrapper{
+        width: 100%;
+    }
+    .CheckOut-Banner{
+        width: 100%;
+    }
+    .cartProduct-Img{
+        width: 35%;
+    }
+    .CartContent{
+        padding: 120px 2rem 25px 2rem;
+    }
+}
+@media (max-width: 756px) {
+    .cartProduct-Img{
+        width: 40%;
+    }
+    .cartProduct-Details-qty-del{
+        width: 100%;
+    }
+    .cartProduct-Details-itemLeft{
+        width: 100%;
+    }
+}
+@media (max-width: 700px) {
+    .cartProduct-Details-stock{
+        font-size: 0.85rem;
+        padding: 0.25rem 0.75rem;
+    }
+    .cartProduct-Details-title{
+        font-size: 2rem;
+    }
+    .cartProduct-Details-price{
+        gap: 0.75rem;
+    }
+    .cartProduct-Details-price span:nth-child(1){
+        font-size: 1.25rem;
+    }
+    .cartProduct-Details-price span:nth-child(2){
+        font-size: 1.1rem;
+    }
+    .cartProduct-Details-itemLeft{
+        gap: 1.5rem;
+    }
+    .cartProduct-Details-itemLeft span{
+        font-size: 1.15rem;
+    }
+    .cartProduct-Details-itemLeft span mark{
+        font-size: 1.15rem;
+    }
+    .cartProduct-Details-qty-del .cartProduct-qte span{
+        font-size: 1.15rem;
+    }
+    .cartProduct-Details-qty-del .cartProduct-qte .qte-value .cartProduct-quantityValue{
+        height: 25px;
+        font-size: 1.15rem;
+    }
+    .cartProduct-Details-qty-del .cartProduct-qte .qte-value .cartProduct-quantityBtn{
+        height: 25px;
+    }
+    .cartProduct-Details-qty-del .cartProduct-delete span{
+        font-size: 1.2rem;
+        padding: 0.35rem 0.75rem;
+    }
+}
+
+@media (max-width: 635px) {
+    .cartProduct-Details-itemLeft .banner-Item{
+        width: 75%;
+    }
+    .cartProduct-Details-itemLeft span{
+        width: 25%;
+    }
+    .cartProduct-Details{
+        gap: 0.75rem;
+    }
+}
+@media (max-width: 540px) {
+    .cartProduct-Details-stock{
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+    }
+    .cartProduct-Details-title{
+        font-size: 1.5rem;
+    }
+    .cartProduct-Details-price{
+        gap: 1rem;
+    }
+    .cartProduct-Details-price span:nth-child(1){
+        font-size: 1.1rem;
+    }
+    .cartProduct-Details-price span:nth-child(2){
+        font-size: 0.85rem;
+    }
+    .cartProduct-Details-itemLeft{
+        gap: 1.25rem;
+    }
+    .cartProduct-Details-itemLeft span{
+        font-size: 1rem;
+    }
+    .cartProduct-Details-itemLeft span mark{
+        font-size: 1rem;
+    }
+    .cartProduct-Details-qty-del .cartProduct-qte span{
+        font-size: 0.9rem;
+    }
+    .cartProduct-Details-qty-del .cartProduct-qte .qte-value .cartProduct-quantityValue{
+        height: 22px;
+        font-size: 1rem;
+        width: 60%;
+    }
+    .cartProduct-Details-qty-del .cartProduct-qte .qte-value .cartProduct-quantityBtn{
+        height: 22px;
+        width: 20%;
+    }
+    .cartProduct-Details-qty-del .cartProduct-delete span{
+        padding: 0.35rem 0.5rem;
+    }
+    .cartProduct-Details-qty-del .cartProduct-qte .qte-value .cartProduct-quantityBtn svg{
+        width: 14px;
+        height: 14px;
+    }
+}
+
+@media (max-width: 485px) {
+    .cartProduct-Img{
+        width: 60%;
+    }
+    .productInCart{
+        gap: 1.5rem;
+    }
+    .cartProduct-Details-itemLeft .banner-Item{
+        width: 65%;
+    }
+    .cartProduct-Details-itemLeft span{
+        width: 35%;
+    }
+}
+@media (max-width: 410px) {
+    .cartProduct-Details-stock{
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+    }
+    .cartProduct-Details-title{
+        font-size: 1.25rem;
+    }
+    .cartProduct-Details-price{
+        gap: 0.75rem;
+    }
+    .cartProduct-Details-price span:nth-child(1){
+        font-size: 1rem;
+    }
+    .cartProduct-Details-price span:nth-child(2){
+        font-size: 0.75rem;
+    }
+    .cartProduct-Details-itemLeft{
+        gap: 1rem;
+    }
+    .cartProduct-Details-itemLeft span{
+        font-size: 0.85rem;
+    }
+    .cartProduct-Details-itemLeft span mark{
+        font-size: 0.85rem;
+    }
+    .cartProduct-Details-qty-del .cartProduct-qte span{
+        font-size: 0.85rem;
+    }
+    .cartProduct-Details-qty-del .cartProduct-qte .qte-value .cartProduct-quantityValue{
+        height: 20px;
+        font-size: 0.85rem;
+        width: 50%;
+    }
+    .cartProduct-Details-qty-del .cartProduct-qte .qte-value .cartProduct-quantityBtn{
+        height: 20px;
+        width: 25%;
+    }
+    .cartProduct-Details-qty-del .cartProduct-delete span{
+        padding: 0.25rem 0.5rem;
+    }
+    .cartProduct-Details-qty-del .cartProduct-qte .qte-value{
+        gap: 0.75rem;
+     }
+}
+@media (max-width: 350px) {
+    .cartProduct-Details{
+        gap: 0.5rem;
+    }
+}
+@media (max-width: 364px) {
+    .CheckOut-Banner .CheckOut-wrapper .CheckOutPrice-Details span:nth-child(1){
+        font-size: 1.25rem;
+    }
+    .CheckOut-Banner .CheckOut-wrapper .CheckOutPrice-Details span:nth-child(2){
+        font-size: 1.25rem;
+    }
+}
+@media (max-width: 332px) {
+    .cartProduct-Details-itemLeft .banner-Item{
+        width: 50%;
+    }
+    .cartProduct-Details-itemLeft span{
+        width: 50%;
+    }
 }
