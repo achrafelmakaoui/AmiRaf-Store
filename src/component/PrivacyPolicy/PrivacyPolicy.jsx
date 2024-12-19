@@ -45,9 +45,9 @@ const PrivacyPolicy = () => {
                 <p>Nous nous réservons le droit de modifier cette politique à tout moment. Les mises à jour seront publiées sur notre site, et votre utilisation continue de nos services constitue une acceptation de ces modifications.</p>
             </div>
             <div className='privacyPolicy-end'>
-                <div className='text-h1'><h1>Get in Touch!</h1></div>
-                <div className='text-p'><p>Contact AmiraF for personalized assistance and expert advice on all your shopping needs.</p></div>
-                <div className='text-btn'><Link to='/contact'>Contact Us</Link></div>
+                <div className='text-h1'><h1>Contactez-nous !</h1></div>
+                <div className='text-p'><p>Contactez AmiraF pour une assistance personnalisée et des conseils d'experts pour tous vos besoins d'achat.</p></div>
+                <div className='text-btn'><Link to='/contact'>Nous contacter</Link></div>
             </div>
         </div>
     </div>

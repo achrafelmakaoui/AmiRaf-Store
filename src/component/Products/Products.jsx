@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Products.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Products = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
+  const BASE_URL = "http://localhost:5000";
 
   const handleMouseEnter = (index) => {
     setHoveredCard(index);
@@ -13,40 +17,23 @@ const Products = () => {
     setHoveredCard(null);
   };
 
-  const products = [
-    {
-      id: 1,
-      img1: 'https://i.ibb.co/nz3pDMQ/air-jordan-1-black-men.png',
-      img2: 'https://i.ibb.co/4RJ3bGm/air-jordan-1-elevate-low-mens-shoes-black-red-3.png',
-      title: 'Air Jordan 1 Low',
-      priceOld: '599.00 MAD',
-      priceNew: '349.00 MAD',
-    },
-    {
-      id: 2,
-      img1: 'https://i.ibb.co/5WqcsXL/7721e342-bd9b-45af-9836-72bf9d729b9e.png',
-      img2: 'https://i.ibb.co/ws0SydH/51281cfb-9172-44c6-9c10-be37e7b9dffa.png',
-      title: 'Air Jordan 1 Low',
-      priceOld: '599.00 MAD',
-      priceNew: '349.00 MAD',
-    },
-    {
-      id: 3,
-      img1: 'https://i.ibb.co/5Tdkg7R/test1.png',
-      img2: 'https://i.ibb.co/BNQvDBN/air-jordan-1-elevate-low-se-mens-shoes-green-1.png',
-      title: 'Air Jordan 1 Low',
-      priceOld: '599.00 MAD',
-      priceNew: '349.00 MAD',
-    },
-    {
-      id: 4,
-      img1: 'https://i.ibb.co/NpkTCmh/252b6f0d-7871-48a3-8d7f-075fa30d7970.png',
-      img2: 'https://i.ibb.co/mcwLspq/596f9d18-eca1-4cd2-bcd4-6c8ed70e98ae.png',
-      title: 'Air Jordan 1 Low',
-      priceOld: '599.00 MAD',
-      priceNew: '349.00 MAD',
-    },
-  ];
+  // Fetch products from API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/product/"); // Replace with your API endpoint
+        setProducts(response.data);
+      } catch (err) {
+        console.log(err.message || "Failed to fetch products");
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const handleClickProductDetails = (productId) => {
+    navigate(`/DetailsProduits/${productId}`); // Navigate to /productdetails/:id
+  };
 
   return (
     <div className='Products' id='NosProduits'>
@@ -56,17 +43,22 @@ const Products = () => {
           <h2>Découvrez notre sélection unique, alliant qualité, créativité et innovation pour répondre à vos besoins.</h2>
         </div>
         <div className='ProductsCards'>
-          {products.map((product, index) => (
+          {products.slice(0,4).map((product, index) => (
             <div
-              key={product.id}
+              key={product._id}
               className='product-card'
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
+              onClick={() => handleClickProductDetails(product._id)}
             >
               <div className='product-img'>
                 <img
-                  src={hoveredCard === index && product.img2 ? product.img2 : product.img1}
-                  alt={product.title}
+                    src={
+                      hoveredCard === index && product.image2
+                        ? `${BASE_URL}${product.image2}`
+                        : `${BASE_URL}${product.image1}`
+                    }
+                    alt={product.title}
                 />
               </div>
               <div className='product-details'>
@@ -74,8 +66,8 @@ const Products = () => {
                   <h2>{product.title}</h2>
                 </div>
                 <div className='productPrincing'>
-                  <span>{product.priceOld}</span>
-                  <span>{product.priceNew}</span>
+                  <span>{product.old_price}.00 DH</span>
+                  <span>{product.new_price}.00 DH</span>
                 </div>
               </div>
             </div>

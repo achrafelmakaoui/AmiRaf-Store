@@ -1,26 +1,84 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Cart.css'
 import { useTheme } from '../../ThemeContext';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { useCart } from '../../CartContext';
 
-const Cart = () => {
-    const [quantity, setQuantity] = useState(1);
+const Cart = ({ userId }) => {
     const { theme } = useTheme();
+    const [cart, setCart] = useState([]);
+    const [cart2, setCart2] = useState({});
+    const [refreshCart, setRefreshCart] = useState(false);
+    const { updateCartCount } = useCart();
 
-    const handleQuantity = (type) => {
-        if (type === "dec") {
-        quantity > 1 && setQuantity(quantity - 1);
-        } else {
-        setQuantity(quantity + 1);
+    useEffect(() => {
+      const fetchCart = async () => {
+        try {
+          const response = await axios.get(`http://localhost:5000/api/cart/${userId}`);
+          setCart(response.data.items || []);
+          setCart2(response.data);
+        } catch (error) {
+          console.error("Error fetching cart:", error.response?.data?.message || error.message);
+        }
+      };
+      fetchCart();
+    }, [userId, refreshCart]);
+
+    const deleteCartProduct = async (productId) => {
+      try {
+        const response = await axios.delete(`http://localhost:5000/api/cart/${userId}/${productId}`);
+        setRefreshCart((prev) => !prev);
+        updateCartCount();
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error deleting cart product:", error.response?.data?.message || error.message);
+      }
+    };
+
+    const updateCartQuantity = async (productId, newQuantity) => {
+        try {
+          const response = await axios.put(`http://localhost:5000/api/cart/${userId}/${productId}`, {
+            quantity: newQuantity,
+          });
+          setRefreshCart((prev) => !prev);
+          console.log(response.data)
+        } catch (error) {
+          console.error('Error updating quantity:', error.response?.data?.message || error.message);
         }
     };
 
-    const handleInputChange = (e) => {
-        const value = parseInt(e.target.value, 10);
-        if (!isNaN(value) && value > 0) {
-        setQuantity(value);
-        } else {
-        setQuantity(1); 
-        }
+    const handleQuantityChange = async (type, productId) => {
+      setCart((prevCart) =>
+        prevCart.map((item) => {
+          if (item.productId._id === productId) {
+            const maxQuantity = item.productId.quantity; // Get the available stock
+            const newQuantity =
+              type === "inc" ? Math.min(item.quantity + 1, maxQuantity) : item.quantity - 1; // Ensure the quantity does not exceed maxQuantity
+            if (newQuantity > 0) {
+              updateCartQuantity(productId, newQuantity);
+              return { ...item, quantity: newQuantity };
+            }
+          }
+          return item;
+        })
+      );
+    };
+      
+    const handleInputChange = (e, productId) => {
+      const value = parseInt(e.target.value, 10);
+      setCart((prevCart) =>
+        prevCart.map((item) => {
+          if (item.productId._id === productId) {
+            const maxQuantity = item.productId.quantity; // Get the available stock
+            if (!isNaN(value) && value > 0 && value <= maxQuantity) { // Validate input value
+              updateCartQuantity(productId, value);
+              return { ...item, quantity: value };
+            }
+          }
+          return item;
+        })
+      );
     };
 
   return (
@@ -88,100 +146,96 @@ const Cart = () => {
             </div>
             <div className='cart-wrapper'>
                 <div className='productCart-wrapper'>
-                    <div className='productInCart'>
-                        <div className='cartProduct-Img'>
-                            <img src='https://i.ibb.co/nz3pDMQ/air-jordan-1-black-men.png' alt='CartProduct'/>
-                        </div>
-                        <div className='cartProduct-Details'>
-                            <span className='cartProduct-Details-stock'>In stock</span>
-                            <h2 className='cartProduct-Details-title'>Air jordan 1 elevate low</h2>
-                            <div className='cartProduct-Details-price'>
-                                <span>199.00 DH</span>
-                                <span>300.00 DH</span>
-                            </div>
-                            <div className='cartProduct-Details-itemLeft'>
-                                <span><mark>5</mark> Item Left</span>
-                                <div className='banner-Item'>
-                                    <div className='banner-Item-Left'></div>
+                    {cart.length > 0 ? (
+                        cart.map((productCart, index) => (
+                            <div className='productInCart' key={index}>
+                                <div className='cartProduct-Img'>
+                                    <img src={`http://localhost:5000${productCart.productId.image1}`} alt='CartProduct'/>
                                 </div>
-                            </div>
-                            <div className='cartProduct-Details-qty-del'>
-                                <div className='cartProduct-qte'>
-                                    <span>Quantity:</span>
-                                    <div className='qte-value'>
-                                        <input className="cartProduct-quantityValue" type='number' value={quantity} onChange={handleInputChange} min="1"/>
-                                        <button type="button" className="cartProduct-quantityBtn" onClick={() => handleQuantity("dec")} >
-                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                                        </button>
-                                        <button type="button" className="cartProduct-quantityBtn" onClick={() => handleQuantity("inc")} >
-                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                                        </button>
+                                <div className='cartProduct-Details'>
+                                    <span className='cartProduct-Details-stock'>{productCart.productId.isInStock ? 'En stock' : 'En rupture de stock'}</span>
+                                    <h2 className='cartProduct-Details-title'>{productCart.productId.title}</h2>
+                                    <div className='cartProduct-Details-price'>
+                                        <span>{productCart.productId.new_price}.00 DH</span>
+                                        <span>{productCart.productId.old_price}.00 DH</span>
+                                    </div>
+                                    <div className='cartProduct-Details-itemLeft'>
+                                        <span><mark>{productCart.productId.quantity}</mark>articles restants</span>
+                                        <div className='banner-Item'>
+                                            <div className='banner-Item-Left'></div>
+                                        </div>
+                                    </div>
+                                    <div className='cartProduct-Details-qty-del'>
+                                        <div className='cartProduct-qte'>
+                                            <span>Quantité:</span>
+                                            <div className='qte-value'>
+                                                <input className="cartProduct-quantityValue" type='number' value={productCart.quantity} onChange={(e) => handleInputChange(e, productCart.productId._id)} min="1"/>
+                                                <button type="button" className="cartProduct-quantityBtn" onClick={() => handleQuantityChange("dec", productCart.productId._id)} >
+                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                                </button>
+                                                <button type="button" className="cartProduct-quantityBtn" onClick={() => handleQuantityChange("inc", productCart.productId._id)} >
+                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className='cartProduct-delete' onClick={()=> deleteCartProduct(productCart.productId._id)}>
+                                            <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className='cartProduct-delete'>
-                                    <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></span>
-                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className='productInCart'>
-                        <div className='cartProduct-Img'>
-                            <img src='https://i.ibb.co/nz3pDMQ/air-jordan-1-black-men.png' alt='CartProduct'/>
-                        </div>
-                        <div className='cartProduct-Details'>
-                            <span className='cartProduct-Details-stock'>In stock</span>
-                            <h2 className='cartProduct-Details-title'>Air jordan 1 elevate low</h2>
-                            <div className='cartProduct-Details-price'>
-                                <span>199.00 DH</span>
-                                <span>300.00 DH</span>
-                            </div>
-                            <div className='cartProduct-Details-itemLeft'>
-                                <span><mark>5</mark> Item Left</span>
-                                <div className='banner-Item'>
-                                    <div className='banner-Item-Left'></div>
-                                </div>
-                            </div>
-                            <div className='cartProduct-Details-qty-del'>
-                                <div className='cartProduct-qte'>
-                                    <span>Quantity:</span>
-                                    <div className='qte-value'>
-                                        <input className="cartProduct-quantityValue" type='number' value={quantity} onChange={handleInputChange} min="1"/>
-                                        <button type="button" className="cartProduct-quantityBtn" onClick={() => handleQuantity("dec")} >
-                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                                        </button>
-                                        <button type="button" className="cartProduct-quantityBtn" onClick={() => handleQuantity("inc")} >
-                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div className='cartProduct-delete'>
-                                    <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    ))) : (
+                        null
+                      )}
                 </div>
-                <div className='CheckOut-Banner'>
-                    <div className='CheckOut-wrapper'>
-                        <span>Détails du Prix</span>
-                        <div className='CheckOutPrice-Details'>
-                            <span>Sous-Total</span>                            
-                            <span>398.00 DH</span>
-                        </div>
-                        <div className='CheckOutPrice-Details'>
-                            <span>Frais de Livraison</span>                            
-                            <span>Gratuit</span>
-                        </div>
-                        <div className='CheckOutPrice-Details'>
-                            <span>Total</span>                            
-                            <span>398.00 DH</span>
-                        </div>
-                        <div className='CheckOutPrice-Btn'>
-                            <span>Acheter Maintenant</span>
-                        </div>
-                    </div>
-                </div>
+                {cart.length > 0 ? (
+                  <div className='CheckOut-Banner'>
+                      <div className='CheckOut-wrapper'>
+                          <span>Détails du Prix</span>
+                          <div className='CheckOutPrice-Details'>
+                              <span>Sous-Total</span>                            
+                              <span>{cart2.totalPrice}.00 DH</span>
+                          </div>
+                          <div className='CheckOutPrice-Details'>
+                              <span>Frais de Livraison</span>                            
+                              <span>Gratuit</span>
+                          </div>
+                          <div className='CheckOutPrice-Details'>
+                              <span>Total</span>                            
+                              <span>{cart2.totalPrice}.00 DH</span>
+                          </div>
+                          <div className='CheckOutPrice-Btn'>
+                              <Link to="/checkout/confirmation"><span>Acheter Maintenant</span></Link>
+                          </div>
+                      </div>
+                  </div>
+                ):(null)}
             </div>
+            {cart.length === 0 && 
+                <div className='noItemFound'>
+                    <div className='noItemFound-Icon'>
+                        <svg width="200" height="155" viewBox="0 0 159 113" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 111.5L27.5 102.5L12.5 91.5L14.5 15.5L27.5 26L18 1H119L125 15.5H158V91.5L147.5 96V111.5L128.5 102.5L104.5 111.5H1Z" fill="#C7C7C7" fill-opacity="0.2"/>
+                            <path d="M27.5 102.5L1 111.5H104.5L128.5 102.5M27.5 102.5L12.5 91.5L14.5 15.5L27.5 26M27.5 102.5H128.5M27.5 102.5V26M27.5 102.5L56 91.5M128.5 102.5L147.5 111.5V96M128.5 102.5V91.5M147.5 96L158 91.5V15.5M147.5 96V35.5L128.5 26M158 15.5H125M158 15.5L128.5 26M125 15.5L119 1H18L27.5 26M125 15.5L128.5 26M27.5 26H56M128.5 26V91.5M128.5 26H56M56 91.5H128.5M56 91.5V26" stroke="#CFCFCF"/>
+                            <path d="M97 52.5L93.7949 57.5M84.5 72L78.8158 63M84.5 72L73.1316 70.3759M84.5 72L89.1474 64.75M84.5 72L87.7919 80.5M42.5 66L58 68.2143M66.5 43.5L73.1316 54M73.1316 54C71.9211 58.3095 67.2 67.1857 58 68.2143M73.1316 54C75.7843 56.3333 83.6308 60.3 93.7949 57.5M73.1316 54L78.8158 63M58 68.2143L73.1316 70.3759M58 68.2143C68.4 72.3857 86.1966 88.4762 93.7949 96M93.7949 57.5L89.1474 64.75M93.7949 57.5C89.6308 70.3 92.0598 88.5 93.7949 96M78.8158 63C78.6316 64.9173 77.2368 69.0767 73.1316 70.3759M78.8158 63C80.7105 64.6667 85.4295 67.35 89.1474 64.75M73.1316 70.3759C77.6956 72.9173 87.0174 78.5 87.7919 80.5M93.7949 96L87.7919 80.5" stroke="white"/>
+                            <path d="M109 66H125.75C122.452 66 118.915 64.3813 116.5 62.5C115.3 64.4984 110.333 65.6654 109 66Z" fill="white"/>
+                            <path d="M125.75 66C133.62 66 140 59.6201 140 51.75C140 43.8799 133.62 37.5 125.75 37.5C117.88 37.5 111.5 43.8799 111.5 51.75C111.5 56.3217 113.153 59.8925 116.5 62.5C118.915 64.3813 122.452 66 125.75 66Z" fill="white"/>
+                            <path d="M111 51.75C111 56.2854 112.587 59.9045 115.811 62.587C115.555 62.8679 115.196 63.1458 114.751 63.4149C114.132 63.7887 113.388 64.1199 112.625 64.4057C111.216 64.9329 109.792 65.2875 109.051 65.472C108.988 65.4875 108.931 65.5019 108.878 65.515L109 66.5H125.75C133.896 66.5 140.5 59.8962 140.5 51.75C140.5 43.6038 133.896 37 125.75 37C117.604 37 111 43.6038 111 51.75Z" stroke="#AEAEAE" stroke-opacity="0.5"/>
+                            <path d="M126.419 45.9482C127.529 45.9482 128.419 46.2522 129.091 46.8602C129.774 47.4576 130.115 48.2842 130.115 49.3402C130.115 50.3856 129.779 51.1856 129.107 51.7402C128.435 52.2842 127.545 52.5562 126.435 52.5562L126.371 53.7882H124.403L124.323 51.0682H125.043C125.971 51.0682 126.686 50.9456 127.187 50.7002C127.689 50.4549 127.939 50.0069 127.939 49.3562C127.939 48.8869 127.801 48.5136 127.523 48.2362C127.257 47.9589 126.889 47.8202 126.419 47.8202C125.929 47.8202 125.545 47.9536 125.267 48.2202C125.001 48.4869 124.867 48.8549 124.867 49.3242H122.755C122.745 48.6736 122.883 48.0922 123.171 47.5802C123.459 47.0682 123.881 46.6682 124.435 46.3802C125.001 46.0922 125.662 45.9482 126.419 45.9482ZM125.379 57.6122C124.974 57.6122 124.638 57.4896 124.371 57.2442C124.115 56.9882 123.987 56.6736 123.987 56.3002C123.987 55.9269 124.115 55.6176 124.371 55.3722C124.638 55.1162 124.974 54.9882 125.379 54.9882C125.774 54.9882 126.099 55.1162 126.355 55.3722C126.611 55.6176 126.739 55.9269 126.739 56.3002C126.739 56.6736 126.611 56.9882 126.355 57.2442C126.099 57.4896 125.774 57.6122 125.379 57.6122Z" fill="#A8A8A8" fill-opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <div className='noItemFound-title'>
+                      <h2>Votre panier est actuellement vide.</h2>
+                    </div>
+                    <div className='noItemFound-desc'>
+                      <p>Avant de procéder au paiement, vous devez ajouter des produits à votre panier d'achat.<br/>
+                      Vous trouverez beaucoup de produits intéressants sur notre page "Produits".</p>
+                    </div>
+                    <div className='noItemFound-btn'>
+                      <Link to="/Produits"><span>Retour au Magasin</span></Link>
+                    </div>
+                </div>
+            }
         </div>
     </div>
   )

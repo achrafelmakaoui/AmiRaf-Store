@@ -126,6 +126,7 @@ form .form-Btn button{
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--rev-color);
+    cursor: pointer;
 }
 @media (max-width: 1083px) {
     .contactContent-Form form{

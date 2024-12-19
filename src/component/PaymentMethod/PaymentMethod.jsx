@@ -30,9 +30,9 @@ const PaymentMethod = () => {
                 <p>Nous introduirons prochainement l’option de paiement via PayPal, l’un des moyens de paiement en ligne les plus sécurisés et pratiques. Processus : Transférez le montant total de votre commande sur notre compte PayPal. Une fois le paiement confirmé, votre commande sera envoyée à l’adresse indiquée.</p>
             </div>
             <div className='PaymentMethod-end'>
-                <div className='text-h1'><h1>Get in Touch!</h1></div>
-                <div className='text-p'><p>Contact AmiraF for personalized assistance and expert advice on all your shopping needs.</p></div>
-                <div className='text-btn'><Link to='/contact'>Contact Us</Link></div>
+                <div className='text-h1'><h1>Contactez-nous !</h1></div>
+                <div className='text-p'><p>Contactez AmiraF pour une assistance personnalisée et des conseils d'experts pour tous vos besoins d'achat.</p></div>
+                <div className='text-btn'><Link to='/contact'>Nous contacter</Link></div>
             </div>
         </div>
     </div>

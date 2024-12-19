@@ -42,9 +42,9 @@ const TermOfUse = () => {
                 <p>AmiRaf se réserve le droit de mettre fin à ces CGU ou de suspendre l'accès au site à tout moment, sans préavis. En cas de résiliation, vous devez cesser immédiatement toute utilisation du site. Si vous êtes insatisfait de l'un des services ou des termes, votre seul recours est d'arrêter d'utiliser le site.</p>
             </div>
             <div className='termofuse-end'>
-                <div className='text-h1'><h1>Get in Touch!</h1></div>
-                <div className='text-p'><p>Contact AmiraF for personalized assistance and expert advice on all your shopping needs.</p></div>
-                <div className='text-btn'><Link to='/contact'>Contact Us</Link></div>
+                <div className='text-h1'><h1>Contactez-nous !</h1></div>
+                <div className='text-p'><p>Contactez AmiraF pour une assistance personnalisée et des conseils d'experts pour tous vos besoins d'achat.</p></div>
+                <div className='text-btn'><Link to='/contact'>Nous contacter</Link></div>
             </div>
         </div>
     </div>

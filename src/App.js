@@ -19,9 +19,11 @@ import ProductDetails from "./component/ProductDetails/ProductDetails";
 import Cart from "./component/Cart/Cart";
 import MakeOrder from "./component/MakeOrder/MakeOrder";
 import LandPage from "./component/LandingPage/LandPage";
+import { getOrCreateUserId } from './userId';
+import { CartProvider } from './CartContext';
 
 function App() {
-
+  const [userId, setUserId] = useState(null);
   const [introComplete, setIntroComplete] = useState(false);
   useEffect(() => {
     const hasSeenIntro = localStorage.getItem('hasSeenIntro');
@@ -36,8 +38,15 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    const id = getOrCreateUserId();
+    setUserId(id);
+    console.log('User ID:', id);
+  }, []);
+
   return (
     <div className="App">
+      <CartProvider userId={userId}>
       <ThemeProvider>
         <ScrollToSection/>
         <Scrolltotop />
@@ -48,7 +57,7 @@ function App() {
               <>
                 {introComplete ? (
                   <>
-                    <Navbar/>
+                    <Navbar userId={userId}/>
                     <LandPage/>
                     <Products/>
                     <ProgressCrads/>
@@ -57,7 +66,7 @@ function App() {
                   </>
                 ) : (
                   <>
-                    {!introComplete && <Intro />}
+                    {!introComplete && <Intro/>}
                   </>
                 )}
               </>
@@ -67,20 +76,20 @@ function App() {
             path="/Produits"
             element={
               <>
-                    <Navbar/>
-                    <ProductsList/>
-                    <ProgressCrads/>
-                    <WhatsAppIcon/>
-                    <Footer/>
+                  <Navbar userId={userId}/>
+                  <ProductsList userId={userId}/>
+                  <ProgressCrads/>
+                  <WhatsAppIcon/>
+                  <Footer/>
               </>
             }
           />
           <Route
-            path="/DetailsProduits"
+            path="/DetailsProduits/:id"
             element={
               <>
-                    <Navbar/>
-                    <ProductDetails/>
+                    <Navbar userId={userId}/>
+                    <ProductDetails userId={userId}/>
                     <WhatsAppIcon/>
                     <Footer/>
               </>
@@ -90,8 +99,8 @@ function App() {
             path="/Cart"
             element={
               <>
-                    <Navbar/>
-                    <Cart/>
+                    <Navbar userId={userId}/>
+                    <Cart userId={userId}/>
                     <WhatsAppIcon/>
                     <Footer/>
               </>
@@ -101,8 +110,8 @@ function App() {
             path="/checkout/confirmation"
             element={
               <>
-                    <Navbar/>
-                    <MakeOrder/>
+                    <Navbar userId={userId}/>
+                    <MakeOrder userId={userId}/>
                     <WhatsAppIcon/>
                     <Footer/>
               </>
@@ -112,7 +121,7 @@ function App() {
             path="/contact"
             element={
               <>
-                    <Navbar/>
+                    <Navbar userId={userId}/>
                     <ContactCards/>
                     <ContactForm/>
                     <WhatsAppIcon/>
@@ -124,7 +133,7 @@ function App() {
             path="/terms-and-conditions"
             element={
               <>
-                    <Navbar/>
+                    <Navbar userId={userId}/>
                     <TermOfUse/>
                     <WhatsAppIcon/>
                     <Footer/>
@@ -135,7 +144,7 @@ function App() {
             path="/confidentiality"
             element={
               <>
-                    <Navbar/>
+                    <Navbar userId={userId}/>
                     <PrivacyPolicy/>
                     <WhatsAppIcon/>
                     <Footer/>
@@ -146,7 +155,7 @@ function App() {
             path="/how-to-pay"
             element={
               <>
-                    <Navbar/>
+                    <Navbar userId={userId}/>
                     <PaymentMethod/>
                     <WhatsAppIcon/>
                     <Footer/>
@@ -155,6 +164,7 @@ function App() {
           />
         </Routes>
       </ThemeProvider>
+      </CartProvider>
     </div>
   );
 }

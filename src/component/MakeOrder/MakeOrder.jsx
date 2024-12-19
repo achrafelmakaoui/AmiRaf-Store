@@ -1,15 +1,82 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './MakeOrder.css'
 import { useTheme } from '../../ThemeContext';
 import OrderConfirmation from '../OrderConfirmation/OrderConfirmation';
+import axios from 'axios';
+import { useCart } from '../../CartContext';
+import { Link } from 'react-router-dom';
 
-const MakeOrder = () => {
+const MakeOrder = ({ userId }) => {
     const { theme } = useTheme();
     const [confirmationAlert, setConfirmationAlert] = useState(false);
+    const [cart, setCart] = useState([]);
+    const [cart2, setCart2] = useState([]);
+    const [name, setName] = useState('');
+    const [address, setAddress] = useState('');
+    const [ville, setVille] = useState('');
+    const [phone, setPhone] = useState('');
+    const [refreshCart, setRefreshCart] = useState(false);
+    const { updateCartCount } = useCart();
 
-    const handleBtnClick = () => {
-        setConfirmationAlert(true);
+    useEffect(() => {
+        const fetchCart = async () => {
+          try {
+            const response = await axios.get(`http://localhost:5000/api/cart/${userId}`);
+            setCart(response.data.items || []);
+            setCart2(response.data);
+          } catch (error) {
+            console.error("Error fetching cart count:", error.response?.data?.message || error.message);
+          }
+        };
+    
+        fetchCart();
+    }, [userId, refreshCart]);
+
+    const deleteCartProduct = async (productId) => {
+        try {
+          const response = await axios.delete(`http://localhost:5000/api/cart/${userId}/${productId}`);
+          console.log(response);
+          setRefreshCart((prev) => !prev);
+          updateCartCount();
+        } catch (error) {
+          console.error("Error deleting cart product:", error.response?.data?.message || error.message);
+        }
     };
+
+    const createOrder = async (orderData) => {
+        try {
+          const response = await axios.post("http://localhost:5000/api/order/", orderData);
+      
+          console.log("Order created successfully:", response.data);
+          setConfirmationAlert(true);
+          updateCartCount();
+          return response.data.order;
+        } catch (error) {
+          console.error("Error creating order:", error.response?.data?.message || error.message);
+          return null;
+        }
+    };
+
+    const handleOrderSubmit = async (e) => {
+        e.preventDefault();
+      
+        const orderData = {
+          userId: userId,
+          items: cart.map(item => ({
+            productId: item.productId._id,
+            quantity: item.quantity,
+            price: item.productId.new_price,
+          })),
+          clientName: name,
+          clientAddress: address,
+          clientVille: ville,
+          clientPhoneNumber: phone,
+        };
+      
+        console.log(orderData)
+        await createOrder(orderData);
+      
+      };
 
   return (
     <div className='MakeOrder'>
@@ -75,66 +142,61 @@ const MakeOrder = () => {
                 }
             </div>
             <div className='OrderWrapper'>
+            {cart.length > 0 ? (<>
                 <div className='orderForm'>
                     <h2>Informations Client</h2>
-                    <div className='orderInputs'>
-                        <div className='orderInput-row'>
-                            <label htmlFor='name'>Nom Complet</label>
-                            <input type='text' id="name" name="name" placeholder='Nom Complet'/>  
+                    <form onSubmit={handleOrderSubmit}>
+                        <div className='orderInputs'>
+                            <div className='orderInput-row'>
+                                <label htmlFor='name'>Nom Complet</label>
+                                <input type='text' id="name" name="name" placeholder='Nom Complet' value={name} onChange={(e) => setName(e.target.value)}/>  
+                            </div>
+                            <div className='orderInput-row'>
+                                <label htmlFor='telephone'>Numero de Telephone</label>                      
+                                <input type='number' id="telephone" name="telephone" placeholder='Numero de Telephone' value={phone} onChange={(e) => setPhone(e.target.value)}/>
+                            </div>
                         </div>
-                        <div className='orderInput-row'>
-                            <label htmlFor='telephone'>Numero de Telephone</label>                      
-                            <input type='number' id="telephone" name="telephone" placeholder='Numero de Telephone'/>
+                        <div className='orderInputs'>
+                            <div className='orderInput-row'>
+                                <label htmlFor='ville'>Ville</label>
+                                <input type='text' id="ville" name="ville" placeholder='Ville' value={ville} onChange={(e) => setVille(e.target.value)}/>  
+                            </div>                        
+                            <div className='orderInput-row'>
+                                <label htmlFor='adresse'>Adresse Complete</label>                      
+                                <input type='text' id="adresse" name="adresse" placeholder='Adresse Complete' value={address} onChange={(e) => setAddress(e.target.value)}/>
+                            </div>
                         </div>
-                    </div>
-                    <div className='orderInputs'>
-                        <div className='orderInput-row'>
-                            <label htmlFor='ville'>Ville</label>
-                            <input type='text' id="ville" name="ville" placeholder='Ville'/>  
-                        </div>                        
-                        <div className='orderInput-row'>
-                             <label htmlFor='adresse'>Adresse Complete</label>                      
-                            <input type='text' id="adresse" name="adresse" placeholder='Adresse Complete'/>
+                        <div className='order-btn'>
+                            <button type='submit'>Confirmation du Commande</button>
                         </div>
-                    </div>
-                    <div className='order-btn'>
-                        <span onClick={handleBtnClick}>Confirmation du Commande</span>
-                    </div>
+                    </form>
                 </div>
                 <div className='ordredProducts-Details'>
                     <span>Détails du Prix</span>
-                    <div className='ordredProduct-banner'>
-                        <div className='ordredproduct-img'>
-                            <img src='https://i.ibb.co/nz3pDMQ/air-jordan-1-black-men.png' alt='Ordred Product'/>
-                        </div>
-                        <div className='ordredproduct-summary'>
-                            <h3>Air jordan 1 elevate low</h3>
-                            <div className='productSummary-Price'>
-                                <span>Prix:</span>
-                                <span>199.00 DH</span>
+                    {cart.length > 0 ? (
+                        cart.map((productCart, index) => (
+                            <div className='ordredProduct-banner' key={index}>
+                                <div className='ordredproduct-img'>
+                                    <img src={`http://localhost:5000${productCart.productId.image1}`} alt='Ordred Product'/>
+                                </div>
+                                <div className='ordredproduct-summary'>
+                                    <h3>{productCart.productId.title}</h3>
+                                    <div className='productSummary-Price'>
+                                        <span>Prix:</span>
+                                        <span>{productCart.productId.new_price}.00 DH</span>
+                                    </div>
+                                    <div className='productSummary-qty'>
+                                        <span>Quantité:</span>
+                                        <span>{productCart.quantity}</span>
+                                    </div>
+                                </div>
+                                <div className='removeProductCart' onClick={()=> deleteCartProduct(productCart.productId._id)}>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                </div>
                             </div>
-                            <div className='productSummary-qty'>
-                                <span>Quantity:</span>
-                                <span>1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='ordredProduct-banner'>
-                        <div className='ordredproduct-img'>
-                            <img src='https://i.ibb.co/5WqcsXL/7721e342-bd9b-45af-9836-72bf9d729b9e.png' alt='Ordred Product'/>
-                        </div>
-                        <div className='ordredproduct-summary'>
-                            <h3>Air jordan 1 elevate low</h3>
-                            <div className='productSummary-Price'>
-                                <span>Prix:</span>
-                                <span>199.00 DH</span>
-                            </div>
-                            <div className='productSummary-qty'>
-                                <span>Quantity:</span>
-                                <span>1</span>
-                            </div>
-                        </div>
-                    </div>
+                        ))) : (
+                            null
+                    )}
                     <div className='ordredProducts-pricing'>
                         <div className='ordredProductsPrice-Details'>
                             <span>Frais de Livraison</span>                            
@@ -142,10 +204,35 @@ const MakeOrder = () => {
                         </div>
                         <div className='ordredProductsPrice-Details'>
                             <span>Prix Total</span>                            
-                            <span>398.00 DH</span>
+                            <span>{cart2.totalPrice}.00 DH</span>
                         </div>
                     </div>
                 </div>
+                </>):(
+                    <div className='noItemFound'>
+                    <div className='noItemFound-Icon'>
+                        <svg width="200" height="155" viewBox="0 0 159 113" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 111.5L27.5 102.5L12.5 91.5L14.5 15.5L27.5 26L18 1H119L125 15.5H158V91.5L147.5 96V111.5L128.5 102.5L104.5 111.5H1Z" fill="#C7C7C7" fill-opacity="0.2"/>
+                            <path d="M27.5 102.5L1 111.5H104.5L128.5 102.5M27.5 102.5L12.5 91.5L14.5 15.5L27.5 26M27.5 102.5H128.5M27.5 102.5V26M27.5 102.5L56 91.5M128.5 102.5L147.5 111.5V96M128.5 102.5V91.5M147.5 96L158 91.5V15.5M147.5 96V35.5L128.5 26M158 15.5H125M158 15.5L128.5 26M125 15.5L119 1H18L27.5 26M125 15.5L128.5 26M27.5 26H56M128.5 26V91.5M128.5 26H56M56 91.5H128.5M56 91.5V26" stroke="#CFCFCF"/>
+                            <path d="M97 52.5L93.7949 57.5M84.5 72L78.8158 63M84.5 72L73.1316 70.3759M84.5 72L89.1474 64.75M84.5 72L87.7919 80.5M42.5 66L58 68.2143M66.5 43.5L73.1316 54M73.1316 54C71.9211 58.3095 67.2 67.1857 58 68.2143M73.1316 54C75.7843 56.3333 83.6308 60.3 93.7949 57.5M73.1316 54L78.8158 63M58 68.2143L73.1316 70.3759M58 68.2143C68.4 72.3857 86.1966 88.4762 93.7949 96M93.7949 57.5L89.1474 64.75M93.7949 57.5C89.6308 70.3 92.0598 88.5 93.7949 96M78.8158 63C78.6316 64.9173 77.2368 69.0767 73.1316 70.3759M78.8158 63C80.7105 64.6667 85.4295 67.35 89.1474 64.75M73.1316 70.3759C77.6956 72.9173 87.0174 78.5 87.7919 80.5M93.7949 96L87.7919 80.5" stroke="white"/>
+                            <path d="M109 66H125.75C122.452 66 118.915 64.3813 116.5 62.5C115.3 64.4984 110.333 65.6654 109 66Z" fill="white"/>
+                            <path d="M125.75 66C133.62 66 140 59.6201 140 51.75C140 43.8799 133.62 37.5 125.75 37.5C117.88 37.5 111.5 43.8799 111.5 51.75C111.5 56.3217 113.153 59.8925 116.5 62.5C118.915 64.3813 122.452 66 125.75 66Z" fill="white"/>
+                            <path d="M111 51.75C111 56.2854 112.587 59.9045 115.811 62.587C115.555 62.8679 115.196 63.1458 114.751 63.4149C114.132 63.7887 113.388 64.1199 112.625 64.4057C111.216 64.9329 109.792 65.2875 109.051 65.472C108.988 65.4875 108.931 65.5019 108.878 65.515L109 66.5H125.75C133.896 66.5 140.5 59.8962 140.5 51.75C140.5 43.6038 133.896 37 125.75 37C117.604 37 111 43.6038 111 51.75Z" stroke="#AEAEAE" stroke-opacity="0.5"/>
+                            <path d="M126.419 45.9482C127.529 45.9482 128.419 46.2522 129.091 46.8602C129.774 47.4576 130.115 48.2842 130.115 49.3402C130.115 50.3856 129.779 51.1856 129.107 51.7402C128.435 52.2842 127.545 52.5562 126.435 52.5562L126.371 53.7882H124.403L124.323 51.0682H125.043C125.971 51.0682 126.686 50.9456 127.187 50.7002C127.689 50.4549 127.939 50.0069 127.939 49.3562C127.939 48.8869 127.801 48.5136 127.523 48.2362C127.257 47.9589 126.889 47.8202 126.419 47.8202C125.929 47.8202 125.545 47.9536 125.267 48.2202C125.001 48.4869 124.867 48.8549 124.867 49.3242H122.755C122.745 48.6736 122.883 48.0922 123.171 47.5802C123.459 47.0682 123.881 46.6682 124.435 46.3802C125.001 46.0922 125.662 45.9482 126.419 45.9482ZM125.379 57.6122C124.974 57.6122 124.638 57.4896 124.371 57.2442C124.115 56.9882 123.987 56.6736 123.987 56.3002C123.987 55.9269 124.115 55.6176 124.371 55.3722C124.638 55.1162 124.974 54.9882 125.379 54.9882C125.774 54.9882 126.099 55.1162 126.355 55.3722C126.611 55.6176 126.739 55.9269 126.739 56.3002C126.739 56.6736 126.611 56.9882 126.355 57.2442C126.099 57.4896 125.774 57.6122 125.379 57.6122Z" fill="#A8A8A8" fill-opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <div className='noItemFound-title'>
+                      <h2>Votre panier est actuellement vide.</h2>
+                    </div>
+                    <div className='noItemFound-desc'>
+                      <p>Avant de procéder au paiement, vous devez ajouter des produits à votre panier d'achat.<br/>
+                      Vous trouverez beaucoup de produits intéressants sur notre page "Produits".</p>
+                    </div>
+                    <div className='noItemFound-btn'>
+                      <Link to="/Produits"><span>Retour au Magasin</span></Link>
+                    </div>
+                </div>
+                )}
             </div>
         </div>
         {confirmationAlert && <><OrderConfirmation/></>}
