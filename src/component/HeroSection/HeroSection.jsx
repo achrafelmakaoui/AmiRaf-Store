@@ -1,6 +1,6 @@
 import React , { useEffect, useRef } from 'react'
 import './HeroSection.css'
-import Bag from '../Images/bag.png'
+import Bag from '../Images/bag.webp'
 import { gsap, Power2 } from 'gsap';
 
 const HeroSection = () => {

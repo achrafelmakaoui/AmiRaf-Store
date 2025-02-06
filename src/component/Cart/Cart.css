@@ -260,12 +260,12 @@
     gap: 2rem;
 }
 .noItemFound .noItemFound-Icon{
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: center;
 }
 .noItemFound .noItemFound-title{
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: center;
 }
@@ -277,7 +277,7 @@
     color: var(--color);
 }
 .noItemFound .noItemFound-desc{
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: center;
 }
@@ -290,7 +290,7 @@
     color: var(--color);
 }
 .noItemFound .noItemFound-btn{
-    width: 50%;
+    width: 100%;
     margin-top: 0.75rem;
     display: flex;
     justify-content: center;

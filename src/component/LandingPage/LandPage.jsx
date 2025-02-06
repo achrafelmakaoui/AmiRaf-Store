@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import './LandPage.css'
 import { gsap, Power2 } from 'gsap';
 import { Link } from 'react-router-dom';
-import Sheild from '../Images/Sheild.png'
-import Badge from '../Images/Badge.png'
-import Star from '../Images/Star.png'
+import Sheild from '../Images/Sheild.webp'
+import Badge from '../Images/Badge.webp'
+import Star from '../Images/Star.webp'
 
 const LandPage = () => {
     const TextAnimation = useRef();

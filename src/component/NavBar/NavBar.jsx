@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './NavBar.css'
-import LogoBlack from '../Images/AmiRaf_Black.png'
-import LogoWhite from '../Images/AmiRaf_Light.png'
+import LogoBlack from '../Images/AmiRaf_Black.webp'
+import LogoWhite from '../Images/AmiRaf_Light.webp'
 import { useTheme } from '../../ThemeContext';
 import { Link } from 'react-router-dom';
 import CartButton from '../CartButton/CartButton';

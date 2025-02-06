@@ -17,11 +17,10 @@ const Products = () => {
     setHoveredCard(null);
   };
 
-  // Fetch products from API
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/product/"); // Replace with your API endpoint
+        const response = await axios.get("http://localhost:5000/api/product/");
         setProducts(response.data);
       } catch (err) {
         console.log(err.message || "Failed to fetch products");
@@ -32,7 +31,7 @@ const Products = () => {
   }, []);
 
   const handleClickProductDetails = (productId) => {
-    navigate(`/DetailsProduits/${productId}`); // Navigate to /productdetails/:id
+    navigate(`/DetailsProduits/${productId}`);
   };
 
   return (

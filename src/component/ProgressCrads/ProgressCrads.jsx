@@ -1,10 +1,10 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import './ProgressCrads.css';
-import Bag from '../Images/bag.png';
-import Rocket from '../Images/rocket.png';
-import Gift from '../Images/gift.png';
-import PhoneCall from '../Images/phonecall.png';
+import Bag from '../Images/bag.webp';
+import Rocket from '../Images/rocket.webp';
+import Gift from '../Images/gift.webp';
+import PhoneCall from '../Images/phonecall.webp';
 
 const ProgressCrads = () => {
   const location = useLocation();

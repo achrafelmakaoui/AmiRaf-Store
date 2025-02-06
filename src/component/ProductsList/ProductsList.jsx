@@ -19,11 +19,11 @@ const ProductsList = ({ userId }) => {
       setHoveredCard(null);
     };
   
-    // Fetch products from API
+
     useEffect(() => {
       const fetchProducts = async () => {
         try {
-          const response = await axios.get("http://localhost:5000/api/product/"); // Replace with your API endpoint
+          const response = await axios.get("http://localhost:5000/api/product/");
           setProducts(response.data);
         } catch (err) {
           console.log(err.message || "Failed to fetch products");
@@ -40,7 +40,6 @@ const ProductsList = ({ userId }) => {
           items: [{ productId, quantity }],
         });
         updateCartCount();
-        console.log("Cart updated successfully:", res.data.cart);
       } catch (err) {
         console.error("Error adding to cart:", err.response?.data?.message || err.message);
       }

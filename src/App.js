@@ -21,6 +21,8 @@ import MakeOrder from "./component/MakeOrder/MakeOrder";
 import LandPage from "./component/LandingPage/LandPage";
 import { getOrCreateUserId } from './userId';
 import { CartProvider } from './CartContext';
+import { Helmet } from 'react-helmet-async';
+import LogoBlack from './component/Images/AmiRaf_Black.webp'
 
 function App() {
   const [userId, setUserId] = useState(null);
@@ -41,7 +43,6 @@ function App() {
   useEffect(() => {
     const id = getOrCreateUserId();
     setUserId(id);
-    console.log('User ID:', id);
   }, []);
 
   return (
@@ -55,6 +56,16 @@ function App() {
             path="/"
             element={
               <>
+                <Helmet>
+                  <title>Amiraf - Boutique en ligne</title>
+                  <meta name="description" content="Découvrez Amiraf, votre boutique en ligne avec paiement à la livraison, livraison rapide et garantie réelle. Achetez en toute confiance !" />
+                  <link rel="canonical" href="https://www.amiraf.shop/" />
+                  <meta property="og:type" content="website" />
+                  <meta property="og:title" content="Amiraf - Votre boutique en ligne de confiance" />
+                  <meta property="og:description" content="Commandez en ligne avec paiement à la livraison et profitez de nos offres exclusives sur Amiraf." />
+                  <meta property="og:image" content={LogoBlack} />
+                  <meta property="og:url" content="https://www.amiraf.shop/" />
+                </Helmet>
                 {introComplete ? (
                   <>
                     <Navbar userId={userId}/>
@@ -76,6 +87,16 @@ function App() {
             path="/Produits"
             element={
               <>
+                  <Helmet>
+                    <title>Produits - Amiraf | Découvrez nos articles</title>
+                    <meta name="description" content="Trouvez une large sélection de produits sur Amiraf. Profitez du paiement à la livraison et d'une garantie réelle !" />
+                    <link rel="canonical" href="https://www.amiraf.shop/Produits" />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:title" content="Découvrez nos produits sur Amiraf" />
+                    <meta property="og:description" content="Achetez en toute confiance avec paiement à la livraison et livraison rapide." />
+                    <meta property="og:image" content={LogoBlack} />
+                    <meta property="og:url" content="https://www.amiraf.shop/Produits" />
+                  </Helmet>
                   <Navbar userId={userId}/>
                   <ProductsList userId={userId}/>
                   <ProgressCrads/>
@@ -88,10 +109,20 @@ function App() {
             path="/DetailsProduits/:id"
             element={
               <>
-                    <Navbar userId={userId}/>
-                    <ProductDetails userId={userId}/>
-                    <WhatsAppIcon/>
-                    <Footer/>
+                <Helmet>
+                  <title>Produits - Amiraf | Découvrez nos articles</title>
+                  <meta name="description" content="Trouvez une large sélection de produits sur Amiraf. Profitez du paiement à la livraison et d'une garantie réelle !" />
+                  <link rel="canonical" href="https://www.amiraf.shop/DetailsProduits/:id" />
+                  <meta property="og:type" content="website" />
+                  <meta property="og:title" content="Découvrez nos produits sur Amiraf" />
+                  <meta property="og:description" content="Achetez en toute confiance avec paiement à la livraison et livraison rapide." />
+                  <meta property="og:image" content={LogoBlack} />
+                  <meta property="og:url" content="https://www.amiraf.shop/DetailsProduits/:id" />
+                </Helmet>
+                <Navbar userId={userId}/>
+                <ProductDetails userId={userId}/>
+                <WhatsAppIcon/>
+                <Footer/>
               </>
             }
           />
@@ -99,10 +130,10 @@ function App() {
             path="/Cart"
             element={
               <>
-                    <Navbar userId={userId}/>
-                    <Cart userId={userId}/>
-                    <WhatsAppIcon/>
-                    <Footer/>
+                <Navbar userId={userId}/>
+                <Cart userId={userId}/>
+                <WhatsAppIcon/>
+                <Footer/>
               </>
             }
           />
@@ -110,10 +141,10 @@ function App() {
             path="/checkout/confirmation"
             element={
               <>
-                    <Navbar userId={userId}/>
-                    <MakeOrder userId={userId}/>
-                    <WhatsAppIcon/>
-                    <Footer/>
+                <Navbar userId={userId}/>
+                <MakeOrder userId={userId}/>
+                <WhatsAppIcon/>
+                <Footer/>
               </>
             }
           />
@@ -121,11 +152,21 @@ function App() {
             path="/contact"
             element={
               <>
-                    <Navbar userId={userId}/>
-                    <ContactCards/>
-                    <ContactForm/>
-                    <WhatsAppIcon/>
-                    <Footer/>
+                <Helmet>
+                  <title>Contactez-nous - Amiraf | Service Client & Assistance</title>
+                  <meta name="description" content="Besoin d'aide ? Contactez Amiraf pour toute question sur nos produits, livraisons ou services." />
+                  <link rel="canonical" href="https://www.amiraf.shop/contact" />
+                  <meta property="og:type" content="website" />
+                  <meta property="og:title" content="Contactez Amiraf - Service Client & Assistance" />
+                  <meta property="og:description" content="Nous sommes à votre écoute pour toute question sur nos produits et services." />
+                  <meta property="og:image" content={LogoBlack} />
+                  <meta property="og:url" content="https://www.amiraf.shop/contact" />
+                </Helmet>
+                <Navbar userId={userId}/>
+                <ContactCards/>
+                <ContactForm/>
+                <WhatsAppIcon/>
+                <Footer/>
               </>
             }
           />
@@ -133,10 +174,10 @@ function App() {
             path="/terms-and-conditions"
             element={
               <>
-                    <Navbar userId={userId}/>
-                    <TermOfUse/>
-                    <WhatsAppIcon/>
-                    <Footer/>
+                <Navbar userId={userId}/>
+                <TermOfUse/>
+                <WhatsAppIcon/>
+                <Footer/>
               </>
             }
           />
@@ -144,10 +185,10 @@ function App() {
             path="/confidentiality"
             element={
               <>
-                    <Navbar userId={userId}/>
-                    <PrivacyPolicy/>
-                    <WhatsAppIcon/>
-                    <Footer/>
+                <Navbar userId={userId}/>
+                <PrivacyPolicy/>
+                <WhatsAppIcon/>
+                <Footer/>
               </>
             }
           />
@@ -155,10 +196,10 @@ function App() {
             path="/how-to-pay"
             element={
               <>
-                    <Navbar userId={userId}/>
-                    <PaymentMethod/>
-                    <WhatsAppIcon/>
-                    <Footer/>
+                <Navbar userId={userId}/>
+                <PaymentMethod/>
+                <WhatsAppIcon/>
+                <Footer/>
               </>
             }
           />

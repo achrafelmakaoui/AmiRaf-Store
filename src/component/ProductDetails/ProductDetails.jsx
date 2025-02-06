@@ -34,7 +34,6 @@ const ProductDetails = ({ userId }) => {
         items: [{ productId, quantity }],
       });
       updateCartCount();
-      console.log("Cart updated successfully:", res.data.cart);
     } catch (err) {
       console.error("Error adding to cart:", err.response?.data?.message || err.message);
     }
@@ -48,7 +47,6 @@ const ProductDetails = ({ userId }) => {
       });
       updateCartCount();
       navigate('/checkout/confirmation');
-      console.log("Cart updated successfully:", res.data.cart);
     } catch (err) {
       console.error("Error adding to cart:", err.response?.data?.message || err.message);
     }
@@ -141,7 +139,7 @@ const ProductDetails = ({ userId }) => {
                 </div>
                 <hr/>
                 <div className="Product-Quantity">
-                    <input className="quantityValue" type='number' value={quantity} onChange={handleInputChange}/>
+                    <input className="quantityValue" type='number' id='number' name='number' value={quantity} onChange={handleInputChange}/>
                     <button type="button" className="quantityBtn" onClick={() => handleQuantity("dec")} >
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </button>
