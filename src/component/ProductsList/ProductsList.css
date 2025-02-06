@@ -1,7 +1,3 @@
-@font-face {
-    font-family: 'DxLactos';
-    src: url('../font/DxLactos-Regular-free-personal-use.otf') format('opentype');
-}
 .ProductsList{
     background-color: var(--background-color_w);
     height: fit-content;
@@ -16,7 +12,7 @@
 .bannerProductList {
     position: relative;
     background-color: #F5F5F5;
-    background-image: url('../Images/bagTexture.jpg');
+    background-image: url('../Images/bagTexture.webp');
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
