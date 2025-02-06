@@ -13,7 +13,7 @@ export const CartProvider = ({ children, userId }) => {
   useEffect(() => {
     const fetchCartCount = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/cart/${userId}`);
+        const response = await axios.get(`https://server.amiraf.shop/api/cart/${userId}`);
         const items = response.data?.items || [];
         setCartCount(items.length);
       } catch (error) {
@@ -27,7 +27,7 @@ export const CartProvider = ({ children, userId }) => {
 
   const updateCartCount = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/cart/${userId}`);
+      const response = await axios.get(`https://server.amiraf.shop/api/cart/${userId}`);
       if (response.data && response.data.items) {
         setCartCount(response.data.items.length);
       }

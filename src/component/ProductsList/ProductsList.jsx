@@ -7,7 +7,7 @@ import { useCart } from '../../CartContext';
 const ProductsList = ({ userId }) => {
     const [hoveredCard, setHoveredCard] = useState(null);
     const [products, setProducts] = useState([]);
-    const BASE_URL = "http://localhost:5000";
+    const BASE_URL = "https://server.amiraf.shop";
     const navigate = useNavigate();
     const { updateCartCount } = useCart();
 
@@ -23,7 +23,7 @@ const ProductsList = ({ userId }) => {
     useEffect(() => {
       const fetchProducts = async () => {
         try {
-          const response = await axios.get("http://localhost:5000/api/product/");
+          const response = await axios.get("https://server.amiraf.shop/api/product/");
           setProducts(response.data);
         } catch (err) {
           console.log(err.message || "Failed to fetch products");
@@ -35,7 +35,7 @@ const ProductsList = ({ userId }) => {
 
     const AddToCart = async (userId, productId, quantity) => {
       try {
-        const res = await axios.post("http://localhost:5000/api/cart/", {
+        const res = await axios.post("https://server.amiraf.shop/api/cart/", {
           userId,
           items: [{ productId, quantity }],
         });

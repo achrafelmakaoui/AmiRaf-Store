@@ -15,7 +15,7 @@ const Cart = ({ userId }) => {
     useEffect(() => {
       const fetchCart = async () => {
         try {
-          const response = await axios.get(`http://localhost:5000/api/cart/${userId}`);
+          const response = await axios.get(`https://server.amiraf.shop/api/cart/${userId}`);
           setCart(response.data.items || []);
           setCart2(response.data);
         } catch (error) {
@@ -27,7 +27,7 @@ const Cart = ({ userId }) => {
 
     const deleteCartProduct = async (productId) => {
       try {
-        const response = await axios.delete(`http://localhost:5000/api/cart/${userId}/${productId}`);
+        const response = await axios.delete(`https://server.amiraf.shop/api/cart/${userId}/${productId}`);
         setRefreshCart((prev) => !prev);
         updateCartCount();
       } catch (error) {
@@ -37,7 +37,7 @@ const Cart = ({ userId }) => {
 
     const updateCartQuantity = async (productId, newQuantity) => {
         try {
-          const response = await axios.put(`http://localhost:5000/api/cart/${userId}/${productId}`, {
+          const response = await axios.put(`https://server.amiraf.shop/api/cart/${userId}/${productId}`, {
             quantity: newQuantity,
           });
           setRefreshCart((prev) => !prev);
@@ -148,7 +148,7 @@ const Cart = ({ userId }) => {
                         cart.map((productCart, index) => (
                             <div className='productInCart' key={index}>
                                 <div className='cartProduct-Img'>
-                                    <img src={`http://localhost:5000${productCart.productId.image1}`} alt='CartProduct'/>
+                                    <img src={`https://server.amiraf.shop${productCart.productId.image1}`} alt='CartProduct'/>
                                 </div>
                                 <div className='cartProduct-Details'>
                                     <span className='cartProduct-Details-stock'>{productCart.productId.isInStock ? 'En stock' : 'En rupture de stock'}</span>

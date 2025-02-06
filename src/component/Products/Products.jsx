@@ -7,7 +7,7 @@ const Products = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-  const BASE_URL = "http://localhost:5000";
+  const BASE_URL = "https://server.amiraf.shop";
 
   const handleMouseEnter = (index) => {
     setHoveredCard(index);
@@ -20,7 +20,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/product/");
+        const response = await axios.get("https://server.amiraf.shop/api/product/");
         setProducts(response.data);
       } catch (err) {
         console.log(err.message || "Failed to fetch products");

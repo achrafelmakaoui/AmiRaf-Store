@@ -21,7 +21,7 @@ const MakeOrder = ({ userId }) => {
     useEffect(() => {
         const fetchCart = async () => {
           try {
-            const response = await axios.get(`http://localhost:5000/api/cart/${userId}`);
+            const response = await axios.get(`https://server.amiraf.shop/api/cart/${userId}`);
             setCart(response.data.items || []);
             setCart2(response.data);
           } catch (error) {
@@ -34,7 +34,7 @@ const MakeOrder = ({ userId }) => {
 
     const deleteCartProduct = async (productId) => {
         try {
-          const response = await axios.delete(`http://localhost:5000/api/cart/${userId}/${productId}`);
+          const response = await axios.delete(`https://server.amiraf.shop/api/cart/${userId}/${productId}`);
           setRefreshCart((prev) => !prev);
           updateCartCount();
         } catch (error) {
@@ -44,7 +44,7 @@ const MakeOrder = ({ userId }) => {
 
     const createOrder = async (orderData) => {
         try {
-          const response = await axios.post("http://localhost:5000/api/order/", orderData);
+          const response = await axios.post("https://server.amiraf.shop/api/order/", orderData);
       
           setConfirmationAlert(true);
           updateCartCount();
@@ -172,7 +172,7 @@ const MakeOrder = ({ userId }) => {
                         cart.map((productCart, index) => (
                             <div className='ordredProduct-banner' key={index}>
                                 <div className='ordredproduct-img'>
-                                    <img src={`http://localhost:5000${productCart.productId.image1}`} alt='Ordred Product'/>
+                                    <img src={`https://server.amiraf.shop${productCart.productId.image1}`} alt='Ordred Product'/>
                                 </div>
                                 <div className='ordredproduct-summary'>
                                     <h3>{productCart.productId.title}</h3>
