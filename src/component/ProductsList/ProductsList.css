@@ -32,7 +32,12 @@
     font-weight: 800;
     color: white;
 }
-
+.loading-text{
+    font-family: 'Poppins',sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color);
+}
 .bannerProductList span{
     font-family: 'Poppins',sans-serif;
     font-size: 1.5rem;

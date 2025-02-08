@@ -7,6 +7,7 @@ import { useCart } from '../../CartContext';
 const ProductsList = ({ userId }) => {
     const [hoveredCard, setHoveredCard] = useState(null);
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
     const BASE_URL = "https://server.amiraf.shop";
     const navigate = useNavigate();
     const { updateCartCount } = useCart();
@@ -27,6 +28,8 @@ const ProductsList = ({ userId }) => {
           setProducts(response.data);
         } catch (err) {
           console.log(err.message || "Failed to fetch products");
+        } finally {
+          setLoading(false);
         }
       };
 
@@ -68,6 +71,7 @@ const ProductsList = ({ userId }) => {
         return () => clearInterval(interval);
       }, [titles.length]);
 
+
   return (
     <div className='ProductsList'>
         <div className='bannerProductList'>
@@ -78,6 +82,9 @@ const ProductsList = ({ userId }) => {
                 <h1>Nos Produits</h1>
                 <h2>Découvrez notre sélection unique, alliant qualité, créativité et innovation pour répondre à vos besoins.</h2>
             </div>
+            {loading ? (
+              <p className='loading-text'>Les produits apparaîtront bientôt... Maximum 40 secondes d'attente. ⏳</p>            
+            ) : (
             <div className='ProductsListCards'>
                 {products.map((product, index) => (
                     <div
@@ -119,6 +126,7 @@ const ProductsList = ({ userId }) => {
                     </div>
                 ))}
             </div>
+            )}
         </div>
     </div>
   )

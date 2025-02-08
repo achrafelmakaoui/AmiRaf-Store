@@ -12,6 +12,7 @@ const ProductDetails = ({ userId }) => {
   const navigate = useNavigate();
   const { updateCartCount } = useCart();
 
+
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
@@ -99,6 +100,7 @@ const ProductDetails = ({ userId }) => {
     setActiveImage(image);
   };
 
+  
   return (
     <div className="ProductDetails">
         <div className="ProductDetails-wrapper">
