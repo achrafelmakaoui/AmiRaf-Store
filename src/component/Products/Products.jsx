@@ -49,7 +49,7 @@ const Products = () => {
         ) : (
         <>
           <div className='ProductsCards'>
-            {products.slice(0,4).map((product, index) => (
+            {products.slice(0,3).map((product, index) => (
               <div
                 key={product._id}
                 className='product-card'
